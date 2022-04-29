@@ -14,8 +14,12 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('user.layouts.default');
-});
+    return view('user.dashboard.index');
+})->name('user.index');
+// route kala
+Route::get('/kala', function () {
+    return view('user.kala.index');
+})->name('user.kala.index');
 
 Route::get('/dashboard', function () {
     return view('dashboard');

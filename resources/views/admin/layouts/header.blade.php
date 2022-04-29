@@ -8,10 +8,13 @@
         <span class="separator"></span>
 
         <div id="userbox" class="userbox">
-            <a class="text-dark" role="menuitem" tabindex="-1" href="pages-signin.html"><i
-                    class="bx bx-power-off"></i>
+            <a class="text-dark" role="menuitem" tabindex="-1" href="javascript::void(0)"
+                onclick="event.preventDefault(); $('#logout-form').submit()"><i class="bx bx-power-off"></i>
                 Logout</a>
         </div>
+        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+            @csrf
+        </form>
     </div>
     <!-- end: search & user box -->
 </header>
