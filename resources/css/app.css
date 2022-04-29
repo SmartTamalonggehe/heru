@@ -1,0 +1,9 @@
+@import "toastr";
+@import "~select2/dist/css/select2.css";
+@import "animate.css";
+@import "bootstrap-colorpicker/dist/css/bootstrap-colorpicker.css";
+/* @import "file-upload-with-preview/dist/file-upload-with-preview.min.css"; */
+
+@import "./myStyle.css";
+@import "./lightbox.css";
+@import "./mySelect.css";
