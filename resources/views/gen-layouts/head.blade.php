@@ -7,9 +7,9 @@
     <meta charset="UTF-8">
     <meta name="csrf_token" content="{{ csrf_token() }}">
     <title>@yield('judul')</title>
-    <meta name="keywords" content="HTML5 Admin Template" />
-    <meta name="description" content="Porto Admin - Responsive HTML5 Template">
-    <meta name="author" content="okler.net">
+    <meta name="keywords" content="Sistem Informasi Geografis" />
+    <meta name="description" content="Penyebaran batu gamping pada kampung Holtekamp">
+    <meta name="author" content="Heru Rumbino">
 
     <!-- Mobile Metas -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />

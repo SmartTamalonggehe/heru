@@ -12,7 +12,7 @@ $folder = 'dashboard';
     <div class="col-12">
         <section class="card">
             <div class="card-body">
-                <h1>Hallo</h1>
+                <h4>Grafik</h4>
             </div>
         </section>
     </div>

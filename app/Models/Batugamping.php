@@ -9,7 +9,7 @@ class Batugamping extends Model
 {
     use HasFactory;
     use HasFactory;
-    protected $table = 'batu_gamping';
+    protected $table = 'batugamping';
     protected $guarded = [];
 
     public function koordinat()

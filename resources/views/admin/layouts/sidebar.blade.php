@@ -23,19 +23,19 @@
                     </li>
                     <li class="@yield('geomorfologi')">
                         <a class="nav-link" href="{{ route('admin.geomorfologi') }}">
-                            <i class="bx bx-loader-circle" aria-hidden="true"></i>
+                            <i class='bx bxs-speaker' aria-hidden="true"></i>
                             <span>Geomormologi</span>
                         </a>
                     </li>
                     <li class="@yield('kala')">
                         <a class="nav-link" href="{{ route('admin.kala') }}">
-                            <i class="bx bx-loader-circle" aria-hidden="true"></i>
+                            <i class="bx bxs-buildings" aria-hidden="true"></i>
                             <span>Kala</span>
                         </a>
                     </li>
                     <li>
-                        <a class="nav-link" href="{{ route('admin.polygon') }}">
-                            <i class="bx bx-loader-circle" aria-hidden="true"></i>
+                        <a class="@yield('batu_gamping')" href="{{ route('admin.batu_gamping') }}">
+                            <i class='bx bx-shape-triangle' aria-hidden="true"></i>
                             <span>Batugamping</span>
                         </a>
                     </li>

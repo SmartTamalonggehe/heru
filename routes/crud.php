@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CRUD\BatuGampingController;
 use App\Http\Controllers\CRUD\GeomorfologiController;
 use App\Http\Controllers\CRUD\KalaController;
 use App\Http\Controllers\CRUD\KoordinatController;
@@ -10,5 +11,7 @@ Route::prefix('crud')->group(function () {
         'koordinat' => KoordinatController::class,
         'geomorfologi' => GeomorfologiController::class,
         'kala' => KalaController::class,
+        // batu_gamping
+        'batu_gamping' => BatuGampingController::class,
     ]);
 });
