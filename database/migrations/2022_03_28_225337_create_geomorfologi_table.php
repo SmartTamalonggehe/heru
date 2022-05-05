@@ -20,7 +20,7 @@ class CreateGeomorfologiTable extends Migration
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
             $table->string('nama', 100);
-            $table->string('warna', 20);
+            $table->string('warna', 50);
             $table->string('relief', 50);
             $table->char('lembah', 1);
             $table->string('aliran', 20);

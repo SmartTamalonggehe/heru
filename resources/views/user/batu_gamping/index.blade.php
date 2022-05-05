@@ -3,7 +3,7 @@
 @section('judul', 'Dahsboard')
 
 @php
-$folder = 'kala';
+$folder = 'batu_gamping';
 @endphp
 
 @section('css')

@@ -15,4 +15,8 @@ class Koordinat extends Model
     {
         return $this->hasMany(KoordinatDet::class, 'koordinat_id', 'id');
     }
+    public function kala()
+    {
+        return $this->hasMany(Kala::class, 'koordinat_id', 'id');
+    }
 }

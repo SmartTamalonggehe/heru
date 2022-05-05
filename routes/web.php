@@ -21,6 +21,16 @@ Route::get('/kala', function () {
     return view('user.kala.index');
 })->name('user.kala.index');
 
+// route geomorfologi
+Route::get('/geomorfologi', function () {
+    return view('user.geomorfologi.index');
+})->name('user.geomorfologi.index');
+
+// route batu_gamping
+Route::get('/batu_gamping', function () {
+    return view('user.batu_gamping.index');
+})->name('user.batu_gamping.index');
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');

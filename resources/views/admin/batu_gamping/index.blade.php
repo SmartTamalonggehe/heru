@@ -41,6 +41,8 @@ $folder = 'batu_gamping';
     <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-draw/v1.2.2/mapbox-gl-draw.js"></script>
     <link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-draw/v1.2.2/mapbox-gl-draw.css"
         type="text/css">
+
+
 @endsection
 
 @section('breadcrumb')

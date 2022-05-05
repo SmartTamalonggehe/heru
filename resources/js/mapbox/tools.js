@@ -21,4 +21,4 @@ function getCoordinates() {
 }
 const uri = `/crud/${route}`;
 
-export { map, token, getCoordinates, csrf_token, uri };
+export { map, token, getCoordinates, csrf_token, uri, route };

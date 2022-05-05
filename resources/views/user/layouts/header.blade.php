@@ -15,11 +15,21 @@
                                 Dashboard
                             </a>
                         </li>
-                        {{-- <li class="">
+                        <li class="">
+                            <a class="nav-link" href="{{ route('user.geomorfologi.index') }}">
+                                Geomorfilogi
+                            </a>
+                        </li>
+                        <li class="">
                             <a class="nav-link" href="{{ route('user.kala.index') }}">
                                 Kala
                             </a>
-                        </li> --}}
+                        </li>
+                        <li class="">
+                            <a class="nav-link" href="{{ route('user.batu_gamping.index') }}">
+                                Batugamping
+                            </a>
+                        </li>
                     </ul>
                 </nav>
             </div>

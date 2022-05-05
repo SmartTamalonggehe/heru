@@ -20,7 +20,8 @@ class CreateBatugampingTable extends Migration
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
             $table->text('ket');
-            $table->string('warna', 20);
+            $table->string('warna', 50);
+            $table->decimal('meter', 10, 2);
             $table->timestamps();
         });
     }

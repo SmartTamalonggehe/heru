@@ -23,7 +23,7 @@ class CreateKalaTable extends Migration
             $table->decimal('umur', 2, 1);
             $table->string('satuan', 10);
             $table->string('regional', 50);
-            $table->string('warna', 20);
+            $table->string('warna', 50);
             $table->text('ket');
             $table->timestamps();
         });

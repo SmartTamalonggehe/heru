@@ -85,6 +85,7 @@ class BatuGampingController extends Controller
             'koordinat_id' => $koordinat->id,
             'ket' => $request->ket,
             'warna' => $request->warna,
+            'meter' => $request->meter,
         ]);
         // store koordinat det
         $longitude = $request->longitude;

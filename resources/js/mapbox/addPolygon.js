@@ -1,4 +1,12 @@
 import * as tools from "./tools";
+// add script to head
+const addScript = () => {
+    const script = document.createElement("script");
+    script.src = "https://unpkg.com/@turf/turf@6/turf.min.js";
+    script.async = true;
+    document.head.appendChild(script);
+};
+addScript();
 
 const map = tools.map;
 
@@ -33,6 +41,13 @@ map.on("draw.update", updateArea);
 function updateArea(e) {
     const data = draw.getAll();
     if (data.features.length > 0) {
+        const area = turf.area(data);
+        // Restrict the area to 2 decimal points.
+        const rounded_area = Math.round(area * 100) / 100;
+        const inputMeter = document.getElementById("meter");
+        if (inputMeter) {
+            inputMeter.value = rounded_area;
+        }
         const coord = data.features[0].geometry.coordinates[0];
         // click #tambah
         document.getElementById("tambah").click();
@@ -52,7 +67,6 @@ const draftCoord = (listCoord) => {
     let inputCoord = "";
     for (let index = 0; index < listCoord.length; index++) {
         const el = listCoord[index];
-        console.log(el);
         const inputLat = `
         <div class="col-12 col-lg-6">
             <div class="mb-3">
@@ -99,6 +113,8 @@ const loadData = async () => {
                     properties: {
                         id: coord.id,
                         name: coord.nama,
+                        ket: coord.ket,
+                        meter: coord.meter,
                         color: coord.warna, //coord.warna, //rgba(255, 0, 114, 0.24)
                     },
                     geometry: {
@@ -133,10 +149,11 @@ const loadData = async () => {
         // open a popup at the location of the click, with description
         // HTML from the click event's properties.
         map.on("click", "area-layer", (e) => {
-            new mapboxgl.Popup()
-                .setLngLat(e.lngLat)
-                .setHTML(e.features[0].properties.name)
-                .addTo(map);
+            let show = e.features[0].properties.name;
+            if (tools.route == "batu_gamping") {
+                show = `${e.features[0].properties.ket}, ${e.features[0].properties.meter} meter`;
+            }
+            new mapboxgl.Popup().setLngLat(e.lngLat).setHTML(show).addTo(map);
         });
 
         // Change the cursor to a pointer when

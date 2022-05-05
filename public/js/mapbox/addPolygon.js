@@ -24,6 +24,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "csrf_token": () => (/* binding */ csrf_token),
 /* harmony export */   "getCoordinates": () => (/* binding */ getCoordinates),
 /* harmony export */   "map": () => (/* binding */ map),
+/* harmony export */   "route": () => (/* binding */ route),
 /* harmony export */   "token": () => (/* binding */ token),
 /* harmony export */   "uri": () => (/* binding */ uri)
 /* harmony export */ });
@@ -904,7 +905,16 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
+ // add script to head
 
+var addScript = function addScript() {
+  var script = document.createElement("script");
+  script.src = "https://unpkg.com/@turf/turf@6/turf.min.js";
+  script.async = true;
+  document.head.appendChild(script);
+};
+
+addScript();
 var map = _tools__WEBPACK_IMPORTED_MODULE_1__.map;
 map.on("mousemove", function (e) {
   document.getElementById("info").innerHTML = // `e.point` is the x, y coordinates of the `mousemove` event
@@ -933,6 +943,15 @@ function updateArea(e) {
   var data = draw.getAll();
 
   if (data.features.length > 0) {
+    var area = turf.area(data); // Restrict the area to 2 decimal points.
+
+    var rounded_area = Math.round(area * 100) / 100;
+    var inputMeter = document.getElementById("meter");
+
+    if (inputMeter) {
+      inputMeter.value = rounded_area;
+    }
+
     var coord = data.features[0].geometry.coordinates[0]; // click #tambah
 
     document.getElementById("tambah").click();
@@ -951,7 +970,6 @@ var draftCoord = function draftCoord(listCoord) {
 
   for (var index = 0; index < listCoord.length; index++) {
     var el = listCoord[index];
-    console.log(el);
     var inputLat = "\n        <div class=\"col-12 col-lg-6\">\n            <div class=\"mb-3\">\n                <label style=\"color: black\" for=\"latitude".concat(index, "\"\n                    class=\"form-label\">Latitude</label>\n                <input type=\"text\" class=\"form-control inputReset\"\n                    name=\"latitude[]\" id=\"latitude").concat(index, "\" value=\"").concat(el[1], "\" required>\n                <div class=\"invalid-feedback\">\n                    Data Tidak Boleh Kosong\n                </div>\n            </div>\n        </div>\n        ");
     var inputLong = "<div class=\"col-12 col-lg-6\">\n            <div class=\"mb-3\">\n                <label style=\"color: black\" for=\"longitude".concat(index, "\"\n                    class=\"form-label\">Longitude</label>\n                <input type=\"text\" class=\"form-control inputReset\"\n                    name=\"longitude[]\" id=\"longitude").concat(index, "\" value=\"").concat(el[0], "\" required>\n                <div class=\"invalid-feedback\">\n                    Data Tidak Boleh Kosong\n                </div>\n            </div>\n        </div>");
     inputCoord += inputLong + inputLat;
@@ -987,6 +1005,8 @@ var loadData = /*#__PURE__*/function () {
                     properties: {
                       id: coord.id,
                       name: coord.nama,
+                      ket: coord.ket,
+                      meter: coord.meter,
                       color: coord.warna //coord.warna, //rgba(255, 0, 114, 0.24)
 
                     },
@@ -1020,7 +1040,13 @@ var loadData = /*#__PURE__*/function () {
               // HTML from the click event's properties.
 
               map.on("click", "area-layer", function (e) {
-                new mapboxgl.Popup().setLngLat(e.lngLat).setHTML(e.features[0].properties.name).addTo(map);
+                var show = e.features[0].properties.name;
+
+                if (_tools__WEBPACK_IMPORTED_MODULE_1__.route == "batu_gamping") {
+                  show = "".concat(e.features[0].properties.ket, ", ").concat(e.features[0].properties.meter, " meter");
+                }
+
+                new mapboxgl.Popup().setLngLat(e.lngLat).setHTML(show).addTo(map);
               }); // Change the cursor to a pointer when
               // the mouse is over the area layer.
 

@@ -19,6 +19,15 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="col-12 col-lg-8">
+                                <div class="mb-3">
+                                    <label for="meter" class="form-label">Meter</label>
+                                    <input type="text" class="form-control" name="meter" id="meter" required>
+                                    <div class="invalid-feedback">
+                                        Data Tidak Boleh Kosong
+                                    </div>
+                                </div>
+                            </div>
                             <div class="col-12 col-lg-3">
                                 <div class="mb-3">
                                     <label for="warna" class="form-label">Warna</label>
