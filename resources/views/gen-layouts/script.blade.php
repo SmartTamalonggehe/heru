@@ -20,4 +20,6 @@
     <!-- Theme Initialization Files -->
     <script src="{{ asset('js/theme.init.js') }}"></script>
 
+    <script src="{{ mix('js/components.js') }}"></script>
+
     @yield('script')

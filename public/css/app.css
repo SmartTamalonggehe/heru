@@ -5108,6 +5108,10 @@
     margin-top: -2px;
 }
 
+.table-popup {
+    font-size: 14px;
+}
+
 body.lb-disable-scrolling {
     overflow: hidden;
 }

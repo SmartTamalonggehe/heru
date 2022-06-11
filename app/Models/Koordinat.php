@@ -19,4 +19,12 @@ class Koordinat extends Model
     {
         return $this->hasMany(Kala::class, 'koordinat_id', 'id');
     }
+    public function batuGamping()
+    {
+        return $this->hasMany(Batugamping::class, 'koordinat_id', 'id');
+    }
+    public function geomorfologi()
+    {
+        return $this->hasMany(Geomorfologi::class, 'koordinat_id', 'id');
+    }
 }

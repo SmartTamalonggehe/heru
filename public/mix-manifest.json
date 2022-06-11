@@ -3,5 +3,6 @@
     "/js/mapbox/addPolygon.js": "/js/mapbox/addPolygon.js",
     "/js/mapbox/showPolygon.js": "/js/mapbox/showPolygon.js",
     "/js/crud.js": "/js/crud.js",
+    "/js/components.js": "/js/components.js",
     "/css/app.css": "/css/app.css"
 }

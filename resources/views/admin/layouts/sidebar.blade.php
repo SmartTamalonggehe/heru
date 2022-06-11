@@ -33,12 +33,30 @@
                             <span>Kala</span>
                         </a>
                     </li>
-                    <li>
-                        <a class="@yield('batu_gamping')" href="{{ route('admin.batu_gamping') }}">
-                            <i class='bx bx-shape-triangle' aria-hidden="true"></i>
-                            <span>Batugamping</span>
+                    <li class="nav-parent">
+                        <a class="nav-link" href="#">
+                            <i class="bx bx-map" aria-hidden="true"></i>
+                            <span>Sebaran</span>
                         </a>
+                        <ul class="nav nav-children">
+                            <li>
+                                <a class="nav-link" href="{{ route('admin.batu_gamping') }}">
+                                    <span>Batugamping</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="nav-link" href="tambagang">
+                                    Tambag Kalkarenit
+                                </a>
+                            </li>
+                            <li>
+                                <a class="nav-link" href="tambagang">
+                                    Avulfal
+                                </a>
+                            </li>
+                        </ul>
                     </li>
+
                 </ul>
             </nav>
         </div>

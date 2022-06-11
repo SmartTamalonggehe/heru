@@ -936,8 +936,18 @@ var showMap = /*#__PURE__*/function () {
                       name: coord.nama,
                       ket: coord.ket,
                       meter: coord.meter,
-                      color: coord.warna //coord.warna, //rgba(255, 0, 114, 0.24)
-
+                      color: coord.warna,
+                      //coord.warna, //rgba(255, 0, 114, 0.24)
+                      umur: coord.umur,
+                      satuan: coord.satuan,
+                      regional: coord.regional,
+                      relief: coord.relief,
+                      lembah: coord.lembah,
+                      aliran: coord.aliran,
+                      endogen: coord.endogen,
+                      eksogen: coord.eksogen,
+                      lereng: coord.lereng,
+                      kontur: coord.kontur
                     },
                     geometry: {
                       type: "Polygon",
@@ -971,8 +981,16 @@ var showMap = /*#__PURE__*/function () {
               map.on("click", "area-layer", function (e) {
                 var show = e.features[0].properties.name;
 
+                if (_tools__WEBPACK_IMPORTED_MODULE_1__.route == "geomorfologi") {
+                  show = "<table class=\"table mt-3 table-popup\">\n                            <tbody>\n                                <tr>\n                                    <td>Nama</td>\n                                    <td>: ".concat(e.features[0].properties.name, "</td>\n                                </tr>\n                                <tr>\n                                    <td>Relief</td>\n                                    <td>: ").concat(e.features[0].properties.relief, "</td>\n                                </tr>\n                                <tr>\n                                    <td>Lembah</td>\n                                    <td>: ").concat(e.features[0].properties.lembah, "</td>\n                                </tr>\n                                <tr>\n                                    <td>Aliran</td>\n                                    <td>: ").concat(e.features[0].properties.aliran, "</td>\n                                </tr>\n                            </tbody>\n                        </table>");
+                }
+
+                if (_tools__WEBPACK_IMPORTED_MODULE_1__.route == "kala") {
+                  show = "<table class=\"table mt-3 table-popup\">\n                            <tbody>\n                                <tr>\n                                    <td>Nama</td>\n                                    <td>: ".concat(e.features[0].properties.name, "</td>\n                                </tr>\n                                <tr>\n                                    <td>Umur</td>\n                                    <td>: ").concat(e.features[0].properties.umur, "</td>\n                                </tr>\n                                <tr>\n                                    <td>Satuan</td>\n                                    <td>: ").concat(e.features[0].properties.satuan, "</td>\n                                </tr>\n                                <tr>\n                                    <td>Regional</td>\n                                    <td>: ").concat(e.features[0].properties.regional, "</td>\n                                </tr>\n                            </tbody>\n                        </table>");
+                }
+
                 if (_tools__WEBPACK_IMPORTED_MODULE_1__.route == "batu_gamping") {
-                  show = "".concat(e.features[0].properties.ket, ", ").concat(e.features[0].properties.meter, " meter");
+                  show = "<table class=\"table mt-3 table-popup\">\n                            <tbody>\n                                <tr>\n                                    <td>Keterangan</td>\n                                    <td>: ".concat(e.features[0].properties.ket, "</td>\n                                </tr>\n                                <tr>\n                                    <td>Luas</td>\n                                    <td>: ").concat(e.features[0].properties.meter, "</td>\n                                </tr>\n                            </tbody>\n                        </table>");
                 }
 
                 new mapboxgl.Popup().setLngLat(e.lngLat).setHTML(show).addTo(map);
@@ -990,6 +1008,7 @@ var showMap = /*#__PURE__*/function () {
 
               map.on("contextmenu", "area-layer", function (e) {
                 var href = e.features[0].properties.id;
+                sweetAlert(href);
               });
             });
 

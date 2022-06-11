@@ -15,4 +15,5 @@ mix.js("resources/js/app.js", "public/js")
     .js("resources/js/mapbox/addPolygon.js", "public/js/mapbox")
     .js("resources/js/mapbox/showPolygon.js", "public/js/mapbox")
     .js("resources/js/crud.js", "public/js")
+    .js("resources/js/components.js", "public/js")
     .postCss("resources/css/app.css", "public/css");

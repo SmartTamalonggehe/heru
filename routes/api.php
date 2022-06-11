@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\KoordinatApi;
 use App\Http\Controllers\API\BatuGampingApi;
 use App\Http\Controllers\API\GeomorfologiApi;
+use App\Http\Controllers\API\KoordinatDetApi;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,3 +28,4 @@ Route::get('kala', [KalaApi::class, 'index'])->name('kala.index');
 // batu_gamping
 Route::get('batu_gamping', [BatuGampingApi::class, 'index'])->name('batu_gamping.index');
 Route::get('koordinat', [KoordinatApi::class, 'index'])->name('koordinat.index');
+Route::get('koordinat_det', [KoordinatDetApi::class, 'index'])->name('koordinat.det');
