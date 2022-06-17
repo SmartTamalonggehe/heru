@@ -8,10 +8,10 @@ use Illuminate\Http\Request;
 
 class BatuGampingApi extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $data = Batugamping::with(['koordinat' => function ($koordinat) {
-            $koordinat->with('koordinatDet');
+        $data = Batugamping::with(['koordinat' => function ($koordinat) use ($request) {
+            $koordinat->where('nm_koordinat', $request->nm_batu)->with('koordinatDet');
         }])->get();
         return response()->json($data);
     }

@@ -20,7 +20,6 @@ $folder = 'batu_gamping';
             color: black;
             font-size: 12px
         }
-
     </style>
 
     <link href="https://api.mapbox.com/mapbox-gl-js/v2.7.0/mapbox-gl.css" rel="stylesheet">
@@ -29,6 +28,7 @@ $folder = 'batu_gamping';
 
 @section('content')
     <div id="route" style="display: none"><?= $folder ?></div>
+    <div id="batu" style="display: none">?nm_batu=kalkarenit</div>
     <div class="mt-5">
         <section role="main" class="content-body">
             <!-- start: page -->

@@ -46,6 +46,11 @@ var route = document.getElementById("route").textContent;
 var csrf_token = $('meta[name="csrf_token"]').attr("content"); // get data coordinates with axios
 
 function getCoordinates() {
+  if (route === "batu_gamping") {
+    var batu = document.getElementById("batu").textContent;
+    route += "".concat(batu);
+  }
+
   return axios.get("/api/".concat(route)).then(function (response) {
     return response.data;
   });
@@ -910,7 +915,7 @@ var map = _tools__WEBPACK_IMPORTED_MODULE_1__.map;
 
 var showMap = /*#__PURE__*/function () {
   var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
-    var data;
+    var dataCoord, data;
     return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
       while (1) {
         switch (_context.prev = _context.next) {
@@ -919,7 +924,10 @@ var showMap = /*#__PURE__*/function () {
             return _tools__WEBPACK_IMPORTED_MODULE_1__.getCoordinates();
 
           case 2:
-            data = _context.sent;
+            dataCoord = _context.sent;
+            data = dataCoord.filter(function (item) {
+              return item.koordinat !== null;
+            });
             map.on("load", function () {
               var coordinates = [];
               var features = []; // if data exist
@@ -979,7 +987,8 @@ var showMap = /*#__PURE__*/function () {
               // HTML from the click event's properties.
 
               map.on("click", "area-layer", function (e) {
-                var show = e.features[0].properties.name;
+                var show = "";
+                show = "<table class=\"table mt-3 table-popup\">\n                            <tbody>\n                                <tr>\n                                    <td>Keterangan</td>\n                                    <td>: ".concat(e.features[0].properties.ket, "</td>\n                                </tr>\n                                <tr>\n                                    <td>Luas</td>\n                                    <td>: ").concat(e.features[0].properties.meter, "</td>\n                                </tr>\n                            </tbody>\n                        </table>");
 
                 if (_tools__WEBPACK_IMPORTED_MODULE_1__.route == "geomorfologi") {
                   show = "<table class=\"table mt-3 table-popup\">\n                            <tbody>\n                                <tr>\n                                    <td>Nama</td>\n                                    <td>: ".concat(e.features[0].properties.name, "</td>\n                                </tr>\n                                <tr>\n                                    <td>Relief</td>\n                                    <td>: ").concat(e.features[0].properties.relief, "</td>\n                                </tr>\n                                <tr>\n                                    <td>Lembah</td>\n                                    <td>: ").concat(e.features[0].properties.lembah, "</td>\n                                </tr>\n                                <tr>\n                                    <td>Aliran</td>\n                                    <td>: ").concat(e.features[0].properties.aliran, "</td>\n                                </tr>\n                            </tbody>\n                        </table>");
@@ -1012,7 +1021,7 @@ var showMap = /*#__PURE__*/function () {
               });
             });
 
-          case 4:
+          case 5:
           case "end":
             return _context.stop();
         }

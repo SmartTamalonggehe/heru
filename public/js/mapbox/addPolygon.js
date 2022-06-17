@@ -46,6 +46,11 @@ var route = document.getElementById("route").textContent;
 var csrf_token = $('meta[name="csrf_token"]').attr("content"); // get data coordinates with axios
 
 function getCoordinates() {
+  if (route === "batu_gamping") {
+    var batu = document.getElementById("batu").textContent;
+    route += "".concat(batu);
+  }
+
   return axios.get("/api/".concat(route)).then(function (response) {
     return response.data;
   });
@@ -981,7 +986,7 @@ var draftCoord = function draftCoord(listCoord) {
 
 var loadData = /*#__PURE__*/function () {
   var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
-    var data;
+    var data, dataCoord;
     return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
       while (1) {
         switch (_context.prev = _context.next) {
@@ -991,12 +996,16 @@ var loadData = /*#__PURE__*/function () {
 
           case 2:
             data = _context.sent;
+            // filter data not null koordinat
+            dataCoord = data.filter(function (item) {
+              return item.koordinat !== null;
+            });
             map.on("load", function () {
               var coordinates = [];
-              var features = []; // if data exist
+              var features = []; // if dataCoord exist
 
-              if (data.length > 0) {
-                data.forEach(function (coord) {
+              if (dataCoord.length > 0) {
+                dataCoord.forEach(function (coord) {
                   coord.koordinat.koordinat_det.forEach(function (element) {
                     coordinates.push([element.longitude, element.latitude]);
                   });
@@ -1050,7 +1059,8 @@ var loadData = /*#__PURE__*/function () {
               // HTML from the click event's properties.
 
               map.on("click", "area-layer", function (e) {
-                var show = e.features[0].properties.name;
+                var show = "";
+                show = "<table class=\"table mt-3 table-popup\">\n                            <tbody>\n                                <tr>\n                                    <td>Keterangan</td>\n                                    <td>: ".concat(e.features[0].properties.ket, "</td>\n                                </tr>\n                                <tr>\n                                    <td>Luas</td>\n                                    <td>: ").concat(e.features[0].properties.meter, "</td>\n                                </tr>\n                            </tbody>\n                        </table>");
 
                 if (_tools__WEBPACK_IMPORTED_MODULE_1__.route == "geomorfologi") {
                   show = "<table class=\"table mt-3 table-popup\">\n                            <tbody>\n                                <tr>\n                                    <td>Nama</td>\n                                    <td>: ".concat(e.features[0].properties.name, "</td>\n                                </tr>\n                                <tr>\n                                    <td>Relief</td>\n                                    <td>: ").concat(e.features[0].properties.relief, "</td>\n                                </tr>\n                                <tr>\n                                    <td>Lembah</td>\n                                    <td>: ").concat(e.features[0].properties.lembah, "</td>\n                                </tr>\n                                <tr>\n                                    <td>Aliran</td>\n                                    <td>: ").concat(e.features[0].properties.aliran, "</td>\n                                </tr>\n                            </tbody>\n                        </table>");
@@ -1058,10 +1068,6 @@ var loadData = /*#__PURE__*/function () {
 
                 if (_tools__WEBPACK_IMPORTED_MODULE_1__.route == "kala") {
                   show = "<table class=\"table mt-3 table-popup\">\n                            <tbody>\n                                <tr>\n                                    <td>Nama</td>\n                                    <td>: ".concat(e.features[0].properties.name, "</td>\n                                </tr>\n                                <tr>\n                                    <td>Umur</td>\n                                    <td>: ").concat(e.features[0].properties.umur, "</td>\n                                </tr>\n                                <tr>\n                                    <td>Satuan</td>\n                                    <td>: ").concat(e.features[0].properties.satuan, "</td>\n                                </tr>\n                                <tr>\n                                    <td>Regional</td>\n                                    <td>: ").concat(e.features[0].properties.regional, "</td>\n                                </tr>\n                            </tbody>\n                        </table>");
-                }
-
-                if (_tools__WEBPACK_IMPORTED_MODULE_1__.route == "batu_gamping") {
-                  show = "<table class=\"table mt-3 table-popup\">\n                            <tbody>\n                                <tr>\n                                    <td>Keterangan</td>\n                                    <td>: ".concat(e.features[0].properties.ket, "</td>\n                                </tr>\n                                <tr>\n                                    <td>Luas</td>\n                                    <td>: ").concat(e.features[0].properties.meter, "</td>\n                                </tr>\n                            </tbody>\n                        </table>");
                 }
 
                 new mapboxgl.Popup().setLngLat(e.lngLat).setHTML(show).addTo(map);
@@ -1083,7 +1089,7 @@ var loadData = /*#__PURE__*/function () {
               });
             });
 
-          case 4:
+          case 5:
           case "end":
             return _context.stop();
         }

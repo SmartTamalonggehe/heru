@@ -26,6 +26,16 @@ Route::prefix('admin')->middleware('auth')->group(function () {
         return view('admin.batu_gamping.index');
     })->name("{$nm}batu_gamping");
 
+    // route kalkarenit
+    Route::get('/kalkarenit', function () {
+        return view('admin.kalkarenit.index');
+    })->name("{$nm}kalkarenit");
+
+    // route kalsulutit
+    Route::get('/kalsulutit', function () {
+        return view('admin.kalsulutit.index');
+    })->name("{$nm}kalsulutit");
+
     Route::get('/polygon', function () {
         return view('admin.polygon.index');
     })->name("{$nm}polygon");

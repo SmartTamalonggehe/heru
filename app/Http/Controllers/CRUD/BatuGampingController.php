@@ -78,7 +78,7 @@ class BatuGampingController extends Controller
         }
 
         $koordinat = Koordinat::create([
-            'nm_koordinat' => 'Kala'
+            'nm_koordinat' => $data['nm_batu'],
         ]);
         // store kala
         $Kala = Batugamping::create([

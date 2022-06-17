@@ -11,10 +11,16 @@ const map = new mapboxgl.Map({
     zoom: 12, // starting zoom
 });
 
-const route = document.getElementById("route").textContent;
+let route = document.getElementById("route").textContent;
+
 const csrf_token = $('meta[name="csrf_token"]').attr("content");
 // get data coordinates with axios
 function getCoordinates() {
+    if (route === "batu_gamping") {
+        const batu = document.getElementById("batu").textContent;
+        route += `${batu}`;
+    }
+
     return axios.get(`/api/${route}`).then((response) => {
         return response.data;
     });

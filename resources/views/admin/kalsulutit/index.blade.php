@@ -1,8 +1,8 @@
 @extends('admin.layouts.default')
-@section('judul', 'Halaman Batu Gamping')
+@section('judul', 'Halaman Batu Gamping Kalkarenit')
 
 @php
-$folder = 'batu_gamping';
+$folder = 'kalsulutit';
 @endphp
 
 @section("$folder", 'my-nav-active')
@@ -50,8 +50,9 @@ $folder = 'batu_gamping';
 
 {{-- content --}}
 @section('content')
-    <div id="route" style="display: none"><?= "$folder" ?></div>
-    <div id="batu" style="display: none">?nm_batu=batugamping</div>
+    <div id="route" style="display: none">batu_gamping</div>
+    <div id="batu" style="display: none">?nm_batu=kalsulutit</div>
+
 
     <div class="col-12">
         <section class="card">

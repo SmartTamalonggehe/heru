@@ -98,13 +98,16 @@ const draftCoord = (listCoord) => {
 // Show the coordinates of the polygon on the map
 const loadData = async () => {
     const data = await tools.getCoordinates();
+    // filter data not null koordinat
+    const dataCoord = data.filter((item) => item.koordinat !== null);
+
     map.on("load", () => {
         let coordinates = [];
         const features = [];
 
-        // if data exist
-        if (data.length > 0) {
-            data.forEach((coord) => {
+        // if dataCoord exist
+        if (dataCoord.length > 0) {
+            dataCoord.forEach((coord) => {
                 coord.koordinat.koordinat_det.forEach((element) => {
                     coordinates.push([element.longitude, element.latitude]);
                 });
@@ -159,7 +162,20 @@ const loadData = async () => {
         // open a popup at the location of the click, with description
         // HTML from the click event's properties.
         map.on("click", "area-layer", (e) => {
-            let show = e.features[0].properties.name;
+            let show = "";
+            show = `<table class="table mt-3 table-popup">
+                            <tbody>
+                                <tr>
+                                    <td>Keterangan</td>
+                                    <td>: ${e.features[0].properties.ket}</td>
+                                </tr>
+                                <tr>
+                                    <td>Luas</td>
+                                    <td>: ${e.features[0].properties.meter}</td>
+                                </tr>
+                            </tbody>
+                        </table>`;
+
             if (tools.route == "geomorfologi") {
                 show = `<table class="table mt-3 table-popup">
                             <tbody>
@@ -204,20 +220,7 @@ const loadData = async () => {
                             </tbody>
                         </table>`;
             }
-            if (tools.route == "batu_gamping") {
-                show = `<table class="table mt-3 table-popup">
-                            <tbody>
-                                <tr>
-                                    <td>Keterangan</td>
-                                    <td>: ${e.features[0].properties.ket}</td>
-                                </tr>
-                                <tr>
-                                    <td>Luas</td>
-                                    <td>: ${e.features[0].properties.meter}</td>
-                                </tr>
-                            </tbody>
-                        </table>`;
-            }
+
             new mapboxgl.Popup().setLngLat(e.lngLat).setHTML(show).addTo(map);
         });
 

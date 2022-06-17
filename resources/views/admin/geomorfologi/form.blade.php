@@ -13,13 +13,13 @@
                             <div class="col-12">
                                 <div class="mb-3">
                                     <label for="nama" class="form-label">Nama</label>
-                                    <input type="text" class="form-control inputReset" name="nama" id="nama" required>
+                                    <input type="text" class="form-control inputReset" name="nama" id="nama"
+                                        required>
                                     <div class="invalid-feedback">
                                         Data Tidak Boleh Kosong
                                     </div>
                                 </div>
                             </div>
-
                             <div class="col-12 col-lg-5">
                                 <div class="mb-3">
                                     <label for="relief" class="form-label">Relief</label>
@@ -120,7 +120,8 @@
                         <div class="row">
                             <div class="col-md-12 text-end">
                                 <button type="submit" class="btn btn-primary" id="tombolForm">Simpan</button>
-                                <button type="button" class="btn btn-default" data-bs-dismiss="modal">Cancel</button>
+                                <button type="button" class="btn btn-default"
+                                    data-bs-dismiss="modal">Cancel</button>
                             </div>
                         </div>
                     </footer>

@@ -3,7 +3,8 @@ import * as tools from "./tools";
 const map = tools.map;
 
 const showMap = async () => {
-    const data = await tools.getCoordinates();
+    const dataCoord = await tools.getCoordinates();
+    const data = dataCoord.filter((item) => item.koordinat !== null);
     map.on("load", () => {
         let coordinates = [];
         const features = [];
@@ -65,7 +66,20 @@ const showMap = async () => {
         // open a popup at the location of the click, with description
         // HTML from the click event's properties.
         map.on("click", "area-layer", (e) => {
-            let show = e.features[0].properties.name;
+            let show = "";
+            show = `<table class="table mt-3 table-popup">
+                            <tbody>
+                                <tr>
+                                    <td>Keterangan</td>
+                                    <td>: ${e.features[0].properties.ket}</td>
+                                </tr>
+                                <tr>
+                                    <td>Luas</td>
+                                    <td>: ${e.features[0].properties.meter}</td>
+                                </tr>
+                            </tbody>
+                        </table>`;
+
             if (tools.route == "geomorfologi") {
                 show = `<table class="table mt-3 table-popup">
                             <tbody>

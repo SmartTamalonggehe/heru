@@ -41,17 +41,17 @@
                         <ul class="nav nav-children">
                             <li>
                                 <a class="nav-link" href="{{ route('admin.batu_gamping') }}">
-                                    <span>Batugamping</span>
+                                    <span>Batu gamping</span>
                                 </a>
                             </li>
                             <li>
-                                <a class="nav-link" href="tambagang">
-                                    Tambag Kalkarenit
+                                <a class="nav-link" href="{{ route('admin.kalkarenit') }}">
+                                    Batu gamping kalkarenit
                                 </a>
                             </li>
                             <li>
-                                <a class="nav-link" href="tambagang">
-                                    Avulfal
+                                <a class="nav-link" href="{{ route('admin.kalsulutit') }}">
+                                    Batu gamping kalsulutit
                                 </a>
                             </li>
                         </ul>

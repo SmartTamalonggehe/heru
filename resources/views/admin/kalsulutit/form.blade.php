@@ -8,7 +8,7 @@
                 <form id="formKu">
                     @csrf
                     <input type="hidden" name="id" class="inputReset" id="id">
-                    <input type="hidden" name="nm_batu" id="nm_batu" value="batugamping">
+                    <input type="hidden" name="nm_batu" id="nm_batu" value="kalsulutit">
                     <div class="card-body">
                         <div class="row">
                             <div class="col-12">
