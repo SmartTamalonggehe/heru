@@ -25,6 +25,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "getCoordinates": () => (/* binding */ getCoordinates),
 /* harmony export */   "map": () => (/* binding */ map),
 /* harmony export */   "route": () => (/* binding */ route),
+/* harmony export */   "sweetAlert": () => (/* binding */ sweetAlert),
 /* harmony export */   "token": () => (/* binding */ token),
 /* harmony export */   "uri": () => (/* binding */ uri)
 /* harmony export */ });
@@ -57,6 +58,43 @@ function getCoordinates() {
 }
 
 var uri = "/crud/".concat(route);
+
+var sweetAlert = function sweetAlert(href) {
+  Swal.fire({
+    title: "Apa anda yakin?",
+    text: "Data yang telah dihapus tidak dapat dikembalikan!",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#3085d6",
+    cancelButtonColor: "#d33",
+    confirmButtonText: "Hapus",
+    cancelButtonText: "Batal"
+  }).then(function (result) {
+    if (result.isConfirmed) {
+      $.ajax({
+        url: "".concat(uri, "/").concat(href),
+        type: "POST",
+        data: {
+          _method: "DELETE",
+          _token: csrf_token
+        },
+        beforeSend: function beforeSend() {// lakukan sesuatu sebelum data dikirim
+        },
+        success: function success(response) {
+          // lakukan sesuatu jika data sudah terkirim
+          Swal.fire("Berhasil!", response.pesan, response.type);
+          var oTable = $("#my_table").dataTable(); // setTimeOut for reloading page
+
+          setTimeout(function () {
+            location.reload();
+          }, 1000);
+          oTable.fnDraw(false);
+        }
+      });
+    }
+  });
+};
+
 
 
 /***/ }),

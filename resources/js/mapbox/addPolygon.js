@@ -1,3 +1,5 @@
+import addPoint from "./addPoint";
+import showPoint from "./showPoint";
 import * as tools from "./tools";
 // add script to head
 const addScript = () => {
@@ -94,6 +96,7 @@ const draftCoord = (listCoord) => {
         inputCoord += inputLong + inputLat;
     }
     parent.innerHTML = inputCoord;
+    document.getElementById("jenis").value = "polygon";
 };
 // Show the coordinates of the polygon on the map
 const loadData = async () => {
@@ -104,6 +107,12 @@ const loadData = async () => {
     map.on("load", () => {
         let coordinates = [];
         const features = [];
+        // point coordinates
+        const nmBatu = document.getElementById("nm_batu");
+        if (nmBatu && nmBatu.value === "batugamping") {
+            addPoint();
+            showPoint();
+        }
 
         // if dataCoord exist
         if (dataCoord.length > 0) {
@@ -238,42 +247,8 @@ const loadData = async () => {
         // when mouse double click
         map.on("contextmenu", "area-layer", (e) => {
             const href = e.features[0].properties.id;
-            sweetAlert(href);
+            tools.sweetAlert(href);
         });
-    });
-};
-
-const sweetAlert = (href) => {
-    Swal.fire({
-        title: "Apa anda yakin?",
-        text: "Data yang telah dihapus tidak dapat dikembalikan!",
-        icon: "warning",
-        showCancelButton: true,
-        confirmButtonColor: "#3085d6",
-        cancelButtonColor: "#d33",
-        confirmButtonText: "Hapus",
-        cancelButtonText: "Batal",
-    }).then((result) => {
-        if (result.isConfirmed) {
-            $.ajax({
-                url: `${tools.uri}/${href}`,
-                type: "POST",
-                data: { _method: "DELETE", _token: tools.csrf_token },
-                beforeSend: function () {
-                    // lakukan sesuatu sebelum data dikirim
-                },
-                success: function (response) {
-                    // lakukan sesuatu jika data sudah terkirim
-                    Swal.fire("Berhasil!", response.pesan, response.type);
-                    let oTable = $("#my_table").dataTable();
-                    // setTimeOut for reloading page
-                    setTimeout(function () {
-                        location.reload();
-                    }, 1000);
-                    oTable.fnDraw(false);
-                },
-            });
-        }
     });
 };
 

@@ -82,7 +82,8 @@ class KalaController extends Controller
         }
 
         $koordinat = Koordinat::create([
-            'nm_koordinat' => 'Kala'
+            'nm_koordinat' => 'Kala',
+            'jenis' => 'polygon',
         ]);
         // store kala
         $Kala = Kala::create([

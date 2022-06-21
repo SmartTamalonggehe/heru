@@ -12,6 +12,164 @@ module.exports = __webpack_require__(/*! regenerator-runtime */ "./node_modules/
 
 /***/ }),
 
+/***/ "./resources/js/mapbox/addPoint.js":
+/*!*****************************************!*\
+  !*** ./resources/js/mapbox/addPoint.js ***!
+  \*****************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _tools__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./tools */ "./resources/js/mapbox/tools.js");
+
+
+var addPoint = function addPoint() {
+  console.log("addPoint");
+  var marker = new mapboxgl.Marker({
+    draggable: true,
+    color: "red"
+  }).setLngLat([140.79355678554617, -2.6129059598329007]).addTo(_tools__WEBPACK_IMPORTED_MODULE_0__.map);
+
+  function onDragEnd() {
+    var lngLat = marker.getLngLat();
+    console.log("Longitude: ".concat(lngLat.lng, " Latitude: ").concat(lngLat.lat));
+    document.getElementById("tambah").click();
+    var parent = document.querySelector(".modal .toggle .row");
+    var index = 0;
+    var inputLat = "\n        <div class=\"col-12 col-lg-6\">\n            <div class=\"mb-3\">\n                <label style=\"color: black\" for=\"latitude".concat(index, "\"\n                    class=\"form-label\">Latitude</label>\n                <input type=\"text\" class=\"form-control inputReset\"\n                    name=\"latitude[]\" id=\"latitude").concat(index, "\" value=\"").concat(lngLat.lat, "\" required>\n                <div class=\"invalid-feedback\">\n                    Data Tidak Boleh Kosong\n                </div>\n            </div>\n        </div>\n        ");
+    var inputLong = "<div class=\"col-12 col-lg-6\">\n            <div class=\"mb-3\">\n                <label style=\"color: black\" for=\"longitude".concat(index, "\"\n                    class=\"form-label\">Longitude</label>\n                <input type=\"text\" class=\"form-control inputReset\"\n                    name=\"longitude[]\" id=\"longitude").concat(index, "\" value=\"").concat(lngLat.lng, "\" required>\n                <div class=\"invalid-feedback\">\n                    Data Tidak Boleh Kosong\n                </div>\n            </div>\n        </div>");
+    var inputCoord = inputLong + inputLat;
+    parent.innerHTML = inputCoord;
+    document.getElementById("jenis").value = "point";
+    document.getElementById("meter").value = 0;
+  }
+
+  marker.on("dragend", onDragEnd);
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (addPoint);
+
+/***/ }),
+
+/***/ "./resources/js/mapbox/showPoint.js":
+/*!******************************************!*\
+  !*** ./resources/js/mapbox/showPoint.js ***!
+  \******************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _tools__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./tools */ "./resources/js/mapbox/tools.js");
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+
+var role = document.getElementById("role").textContent;
+
+var showPoint = /*#__PURE__*/function () {
+  var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2() {
+    var data, point, featurePoint, popup;
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
+      while (1) {
+        switch (_context2.prev = _context2.next) {
+          case 0:
+            _context2.next = 2;
+            return (0,_tools__WEBPACK_IMPORTED_MODULE_1__.getCoordinates)();
+
+          case 2:
+            data = _context2.sent;
+            // filter data with jenis = point
+            point = data.filter(function (item) {
+              return item.koordinat.jenis === "point";
+            });
+            featurePoint = point.map(function (item) {
+              return {
+                type: "Feature",
+                geometry: {
+                  type: "Point",
+                  coordinates: [item.koordinat.koordinat_det[0].longitude, item.koordinat.koordinat_det[0].latitude]
+                },
+                properties: {
+                  id: item.id,
+                  ket: item.ket,
+                  warna: item.warna
+                }
+              };
+            } // end of map
+            ); // end of point.map
+
+            _tools__WEBPACK_IMPORTED_MODULE_1__.map.addSource("point", {
+              type: "geojson",
+              data: {
+                type: "FeatureCollection",
+                features: featurePoint
+              }
+            });
+            _tools__WEBPACK_IMPORTED_MODULE_1__.map.addLayer({
+              id: "point",
+              source: "point",
+              type: "circle",
+              paint: {
+                "circle-radius": 10,
+                "circle-color": ["get", "warna"],
+                "circle-stroke-color": ["get", "warna"],
+                "circle-stroke-width": 1
+              }
+            });
+            popup = new mapboxgl.Popup({
+              offset: [0, -15]
+            });
+            _tools__WEBPACK_IMPORTED_MODULE_1__.map.on("mouseenter", "point", function (e) {
+              var coordinates = e.features[0].geometry.coordinates.slice();
+              var ket = e.features[0].properties.ket;
+              popup.setLngLat(coordinates).setHTML("<table class=\"table mt-3 table-popup\">\n                            <tbody>\n                                <tr>\n                                    <td>Keterangan</td>\n                                    <td>: ".concat(ket, "</td>\n                                </tr>\n                                ").concat(role === "admin" ? " <tr>\n                                                <td colspan=\"2\">\n                                                    <button class=\"btn btn-danger btn-sm\" id=\"hapus\">Hapus</button>\n                                                </td>\n                                            </tr> " : "", "\n                            </tbody>\n                        </table>\n                ")).addTo(_tools__WEBPACK_IMPORTED_MODULE_1__.map);
+              document.getElementById("hapus").addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
+                var id;
+                return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
+                  while (1) {
+                    switch (_context.prev = _context.next) {
+                      case 0:
+                        id = e.features[0].properties.id;
+                        (0,_tools__WEBPACK_IMPORTED_MODULE_1__.sweetAlert)(id);
+
+                      case 2:
+                      case "end":
+                        return _context.stop();
+                    }
+                  }
+                }, _callee);
+              })) // end of click
+              ); // end of addEventListener
+            });
+
+          case 9:
+          case "end":
+            return _context2.stop();
+        }
+      }
+    }, _callee2);
+  }));
+
+  return function showPoint() {
+    return _ref.apply(this, arguments);
+  };
+}();
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (showPoint);
+
+/***/ }),
+
 /***/ "./resources/js/mapbox/tools.js":
 /*!**************************************!*\
   !*** ./resources/js/mapbox/tools.js ***!
@@ -25,6 +183,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "getCoordinates": () => (/* binding */ getCoordinates),
 /* harmony export */   "map": () => (/* binding */ map),
 /* harmony export */   "route": () => (/* binding */ route),
+/* harmony export */   "sweetAlert": () => (/* binding */ sweetAlert),
 /* harmony export */   "token": () => (/* binding */ token),
 /* harmony export */   "uri": () => (/* binding */ uri)
 /* harmony export */ });
@@ -57,6 +216,43 @@ function getCoordinates() {
 }
 
 var uri = "/crud/".concat(route);
+
+var sweetAlert = function sweetAlert(href) {
+  Swal.fire({
+    title: "Apa anda yakin?",
+    text: "Data yang telah dihapus tidak dapat dikembalikan!",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#3085d6",
+    cancelButtonColor: "#d33",
+    confirmButtonText: "Hapus",
+    cancelButtonText: "Batal"
+  }).then(function (result) {
+    if (result.isConfirmed) {
+      $.ajax({
+        url: "".concat(uri, "/").concat(href),
+        type: "POST",
+        data: {
+          _method: "DELETE",
+          _token: csrf_token
+        },
+        beforeSend: function beforeSend() {// lakukan sesuatu sebelum data dikirim
+        },
+        success: function success(response) {
+          // lakukan sesuatu jika data sudah terkirim
+          Swal.fire("Berhasil!", response.pesan, response.type);
+          var oTable = $("#my_table").dataTable(); // setTimeOut for reloading page
+
+          setTimeout(function () {
+            location.reload();
+          }, 1000);
+          oTable.fnDraw(false);
+        }
+      });
+    }
+  });
+};
+
 
 
 /***/ }),
@@ -903,12 +1099,16 @@ var __webpack_exports__ = {};
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _tools__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./tools */ "./resources/js/mapbox/tools.js");
+/* harmony import */ var _addPoint__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./addPoint */ "./resources/js/mapbox/addPoint.js");
+/* harmony import */ var _showPoint__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./showPoint */ "./resources/js/mapbox/showPoint.js");
+/* harmony import */ var _tools__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./tools */ "./resources/js/mapbox/tools.js");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+
 
  // add script to head
 
@@ -920,7 +1120,7 @@ var addScript = function addScript() {
 };
 
 addScript();
-var map = _tools__WEBPACK_IMPORTED_MODULE_1__.map;
+var map = _tools__WEBPACK_IMPORTED_MODULE_3__.map;
 map.on("mousemove", function (e) {
   document.getElementById("info").innerHTML = // `e.point` is the x, y coordinates of the `mousemove` event
   // relative to the top-left corner of the map.
@@ -981,6 +1181,7 @@ var draftCoord = function draftCoord(listCoord) {
   }
 
   parent.innerHTML = inputCoord;
+  document.getElementById("jenis").value = "polygon";
 }; // Show the coordinates of the polygon on the map
 
 
@@ -992,7 +1193,7 @@ var loadData = /*#__PURE__*/function () {
         switch (_context.prev = _context.next) {
           case 0:
             _context.next = 2;
-            return _tools__WEBPACK_IMPORTED_MODULE_1__.getCoordinates();
+            return _tools__WEBPACK_IMPORTED_MODULE_3__.getCoordinates();
 
           case 2:
             data = _context.sent;
@@ -1002,7 +1203,15 @@ var loadData = /*#__PURE__*/function () {
             });
             map.on("load", function () {
               var coordinates = [];
-              var features = []; // if dataCoord exist
+              var features = []; // point coordinates
+
+              var nmBatu = document.getElementById("nm_batu");
+
+              if (nmBatu && nmBatu.value === "batugamping") {
+                (0,_addPoint__WEBPACK_IMPORTED_MODULE_1__["default"])();
+                (0,_showPoint__WEBPACK_IMPORTED_MODULE_2__["default"])();
+              } // if dataCoord exist
+
 
               if (dataCoord.length > 0) {
                 dataCoord.forEach(function (coord) {
@@ -1062,11 +1271,11 @@ var loadData = /*#__PURE__*/function () {
                 var show = "";
                 show = "<table class=\"table mt-3 table-popup\">\n                            <tbody>\n                                <tr>\n                                    <td>Keterangan</td>\n                                    <td>: ".concat(e.features[0].properties.ket, "</td>\n                                </tr>\n                                <tr>\n                                    <td>Luas</td>\n                                    <td>: ").concat(e.features[0].properties.meter, "</td>\n                                </tr>\n                            </tbody>\n                        </table>");
 
-                if (_tools__WEBPACK_IMPORTED_MODULE_1__.route == "geomorfologi") {
+                if (_tools__WEBPACK_IMPORTED_MODULE_3__.route == "geomorfologi") {
                   show = "<table class=\"table mt-3 table-popup\">\n                            <tbody>\n                                <tr>\n                                    <td>Nama</td>\n                                    <td>: ".concat(e.features[0].properties.name, "</td>\n                                </tr>\n                                <tr>\n                                    <td>Relief</td>\n                                    <td>: ").concat(e.features[0].properties.relief, "</td>\n                                </tr>\n                                <tr>\n                                    <td>Lembah</td>\n                                    <td>: ").concat(e.features[0].properties.lembah, "</td>\n                                </tr>\n                                <tr>\n                                    <td>Aliran</td>\n                                    <td>: ").concat(e.features[0].properties.aliran, "</td>\n                                </tr>\n                            </tbody>\n                        </table>");
                 }
 
-                if (_tools__WEBPACK_IMPORTED_MODULE_1__.route == "kala") {
+                if (_tools__WEBPACK_IMPORTED_MODULE_3__.route == "kala") {
                   show = "<table class=\"table mt-3 table-popup\">\n                            <tbody>\n                                <tr>\n                                    <td>Nama</td>\n                                    <td>: ".concat(e.features[0].properties.name, "</td>\n                                </tr>\n                                <tr>\n                                    <td>Umur</td>\n                                    <td>: ").concat(e.features[0].properties.umur, "</td>\n                                </tr>\n                                <tr>\n                                    <td>Satuan</td>\n                                    <td>: ").concat(e.features[0].properties.satuan, "</td>\n                                </tr>\n                                <tr>\n                                    <td>Regional</td>\n                                    <td>: ").concat(e.features[0].properties.regional, "</td>\n                                </tr>\n                            </tbody>\n                        </table>");
                 }
 
@@ -1085,7 +1294,7 @@ var loadData = /*#__PURE__*/function () {
 
               map.on("contextmenu", "area-layer", function (e) {
                 var href = e.features[0].properties.id;
-                sweetAlert(href);
+                _tools__WEBPACK_IMPORTED_MODULE_3__.sweetAlert(href);
               });
             });
 
@@ -1101,42 +1310,6 @@ var loadData = /*#__PURE__*/function () {
     return _ref.apply(this, arguments);
   };
 }();
-
-var sweetAlert = function sweetAlert(href) {
-  Swal.fire({
-    title: "Apa anda yakin?",
-    text: "Data yang telah dihapus tidak dapat dikembalikan!",
-    icon: "warning",
-    showCancelButton: true,
-    confirmButtonColor: "#3085d6",
-    cancelButtonColor: "#d33",
-    confirmButtonText: "Hapus",
-    cancelButtonText: "Batal"
-  }).then(function (result) {
-    if (result.isConfirmed) {
-      $.ajax({
-        url: "".concat(_tools__WEBPACK_IMPORTED_MODULE_1__.uri, "/").concat(href),
-        type: "POST",
-        data: {
-          _method: "DELETE",
-          _token: _tools__WEBPACK_IMPORTED_MODULE_1__.csrf_token
-        },
-        beforeSend: function beforeSend() {// lakukan sesuatu sebelum data dikirim
-        },
-        success: function success(response) {
-          // lakukan sesuatu jika data sudah terkirim
-          Swal.fire("Berhasil!", response.pesan, response.type);
-          var oTable = $("#my_table").dataTable(); // setTimeOut for reloading page
-
-          setTimeout(function () {
-            location.reload();
-          }, 1000);
-          oTable.fnDraw(false);
-        }
-      });
-    }
-  });
-};
 
 loadData();
 })();

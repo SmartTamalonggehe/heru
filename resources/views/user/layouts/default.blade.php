@@ -11,6 +11,7 @@
         <!-- end: header -->
 
         @yield('content')
+        <div id="role" style="display: none">user</div>
     </section>
 
     @include('gen-layouts.script')

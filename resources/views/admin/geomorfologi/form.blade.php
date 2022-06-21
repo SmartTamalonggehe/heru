@@ -8,6 +8,7 @@
                 <form id="formKu">
                     @csrf
                     <input type="hidden" name="id" class="inputReset" id="id">
+                    <input type="hidden" name="jenis" id="jenis" value="polygon">
                     <div class="card-body">
                         <div class="row">
                             <div class="col-12">

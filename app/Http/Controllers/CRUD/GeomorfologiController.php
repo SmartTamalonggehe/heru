@@ -86,7 +86,8 @@ class GeomorfologiController extends Controller
         }
 
         $koordinat = Koordinat::create([
-            'nm_koordinat' => 'Geomorfologi'
+            'nm_koordinat' => 'Geomorfologi',
+            'jenis' => 'polygon',
         ]);
         // store geomorfologi
         $geomorfologi = Geomorfologi::create([

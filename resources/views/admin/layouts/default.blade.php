@@ -32,6 +32,7 @@
         </div>
 
     </section>
+    <div id="role" style="display: none">admin</div>
 
     {{-- script --}}
     @include('gen-layouts.script')

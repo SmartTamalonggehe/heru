@@ -8,12 +8,14 @@
                 <form id="formKu">
                     @csrf
                     <input type="hidden" name="id" class="inputReset" id="id">
+                    <input type="hidden" name="jenis" id="jenis" value="polygon">
                     <div class="card-body">
                         <div class="row">
                             <div class="col-12">
                                 <div class="mb-3">
                                     <label for="nama" class="form-label">Nama</label>
-                                    <input type="text" class="form-control inputReset" name="nama" id="nama" required>
+                                    <input type="text" class="form-control inputReset" name="nama" id="nama"
+                                        required>
                                     <div class="invalid-feedback">
                                         Data Tidak Boleh Kosong
                                     </div>
@@ -22,7 +24,8 @@
                             <div class="col-12 col-lg-3">
                                 <div class="mb-3">
                                     <label for="umur" class="form-label">Umur</label>
-                                    <input type="number" class="form-control inputReset" name="umur" id="umur" required>
+                                    <input type="number" class="form-control inputReset" name="umur" id="umur"
+                                        required>
                                     <div class="invalid-feedback">
                                         Data Tidak Boleh Kosong
                                     </div>
@@ -63,7 +66,8 @@
                             <div class="col-12">
                                 <div class="mb-3">
                                     <label for="ket" class="form-label">Ket</label>
-                                    <input type="text" class="form-control inputReset" name="ket" id="ket" required>
+                                    <input type="text" class="form-control inputReset" name="ket" id="ket"
+                                        required>
                                     <div class="invalid-feedback">
                                         Data Tidak Boleh Kosong
                                     </div>

@@ -1422,7 +1422,7 @@ var Alpine = {
   get raw() {
     return raw;
   },
-  version: "3.9.5",
+  version: "3.9.3",
   flushAndStopDeferringMutations,
   disableEffectScheduling,
   setReactivityEngine,
@@ -47777,7 +47777,7 @@ S2.define('jquery.select2',[
 /***/ (function(module) {
 
 /*!
-* sweetalert2 v11.4.8
+* sweetalert2 v11.4.7
 * Released under the MIT License.
 */
 (function (global, factory) {
@@ -51178,7 +51178,7 @@ S2.define('jquery.select2',[
     };
   });
   SweetAlert.DismissReason = DismissReason;
-  SweetAlert.version = '11.4.8';
+  SweetAlert.version = '11.4.7';
 
   const Swal = SweetAlert; // @ts-ignore
 
