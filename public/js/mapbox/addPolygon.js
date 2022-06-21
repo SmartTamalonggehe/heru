@@ -89,9 +89,10 @@ var showPoint = /*#__PURE__*/function () {
 
           case 2:
             data = _context2.sent;
-            // filter data with jenis = point
+            console.log(data); // filter data with jenis = point
+
             point = data.filter(function (item) {
-              return item.koordinat.jenis === "point";
+              return item.koordinat.jenis == "point";
             });
             featurePoint = point.map(function (item) {
               return {
@@ -153,7 +154,7 @@ var showPoint = /*#__PURE__*/function () {
               ); // end of addEventListener
             });
 
-          case 9:
+          case 10:
           case "end":
             return _context2.stop();
         }

@@ -3,8 +3,9 @@ const role = document.getElementById("role").textContent;
 
 const showPoint = async () => {
     const data = await getCoordinates();
+    console.log(data);
     // filter data with jenis = point
-    const point = data.filter((item) => item.koordinat.jenis === "point");
+    const point = data.filter((item) => item.koordinat.jenis == "point");
 
     const featurePoint = point.map(
         (item) => {
