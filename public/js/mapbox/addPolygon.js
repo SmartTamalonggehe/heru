@@ -89,10 +89,10 @@ var showPoint = /*#__PURE__*/function () {
 
           case 2:
             data = _context2.sent;
-            console.log(data); // filter data with jenis = point
+            console.log(data); // filter data with jenis = point and remove null value
 
             point = data.filter(function (item) {
-              return item.koordinat.jenis == "point";
+              return item.koordinat !== null && item.koordinat.jenis === "point";
             });
             featurePoint = point.map(function (item) {
               return {
