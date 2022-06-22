@@ -109,7 +109,11 @@ const loadData = async () => {
         const features = [];
         // point coordinates
         const nmBatu = document.getElementById("nm_batu");
-        if (nmBatu && nmBatu.value === "batugamping") {
+        if (
+            (nmBatu && nmBatu.value === "batugamping") ||
+            nmBatu.value === "kalkarenit" ||
+            nmBatu.value === "kalsulutit"
+        ) {
             addPoint();
             showPoint();
         }

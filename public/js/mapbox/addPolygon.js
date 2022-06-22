@@ -1208,7 +1208,7 @@ var loadData = /*#__PURE__*/function () {
 
               var nmBatu = document.getElementById("nm_batu");
 
-              if (nmBatu && nmBatu.value === "batugamping") {
+              if (nmBatu && nmBatu.value === "batugamping" || nmBatu.value === "kalkarenit" || nmBatu.value === "kalsulutit") {
                 (0,_addPoint__WEBPACK_IMPORTED_MODULE_1__["default"])();
                 (0,_showPoint__WEBPACK_IMPORTED_MODULE_2__["default"])();
               } // if dataCoord exist
