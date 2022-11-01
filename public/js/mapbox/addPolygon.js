@@ -135,23 +135,28 @@ var showPoint = /*#__PURE__*/function () {
               var coordinates = e.features[0].geometry.coordinates.slice();
               var ket = e.features[0].properties.ket;
               popup.setLngLat(coordinates).setHTML("<table class=\"table mt-3 table-popup\">\n                            <tbody>\n                                <tr>\n                                    <td>Keterangan</td>\n                                    <td>: ".concat(ket, "</td>\n                                </tr>\n                                ").concat(role === "admin" ? " <tr>\n                                                <td colspan=\"2\">\n                                                    <button class=\"btn btn-danger btn-sm\" id=\"hapus\">Hapus</button>\n                                                </td>\n                                            </tr> " : "", "\n                            </tbody>\n                        </table>\n                ")).addTo(_tools__WEBPACK_IMPORTED_MODULE_1__.map);
-              document.getElementById("hapus").addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
-                var id;
-                return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
-                  while (1) {
-                    switch (_context.prev = _context.next) {
-                      case 0:
-                        id = e.features[0].properties.id;
-                        (0,_tools__WEBPACK_IMPORTED_MODULE_1__.sweetAlert)(id);
+              var hapusPoint = document.getElementById("hapus");
 
-                      case 2:
-                      case "end":
-                        return _context.stop();
+              if (hapusPoint) {
+                hapusPoint.addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
+                  var id;
+                  return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
+                    while (1) {
+                      switch (_context.prev = _context.next) {
+                        case 0:
+                          id = e.features[0].properties.id;
+                          (0,_tools__WEBPACK_IMPORTED_MODULE_1__.sweetAlert)(id);
+
+                        case 2:
+                        case "end":
+                          return _context.stop();
+                      }
                     }
-                  }
-                }, _callee);
-              })) // end of click
-              ); // end of addEventListener
+                  }, _callee);
+                })) // end of click
+                );
+              } // end of addEventListener
+
             });
 
           case 10:
@@ -1186,6 +1191,8 @@ var draftCoord = function draftCoord(listCoord) {
 }; // Show the coordinates of the polygon on the map
 
 
+var role = document.getElementById("role").textContent;
+
 var loadData = /*#__PURE__*/function () {
   var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
     var data, dataCoord;
@@ -1208,9 +1215,11 @@ var loadData = /*#__PURE__*/function () {
 
               var nmBatu = document.getElementById("nm_batu");
 
-              if (nmBatu && nmBatu.value === "batugamping" || nmBatu.value === "kalkarenit" || nmBatu.value === "kalsulutit") {
-                (0,_addPoint__WEBPACK_IMPORTED_MODULE_1__["default"])();
-                (0,_showPoint__WEBPACK_IMPORTED_MODULE_2__["default"])();
+              if (nmBatu) {
+                if (nmBatu && nmBatu.value === "batugamping" || nmBatu.value === "kalkarenit" || nmBatu.value === "kalsulutit") {
+                  (0,_showPoint__WEBPACK_IMPORTED_MODULE_2__["default"])();
+                  role === "admin" ? (0,_addPoint__WEBPACK_IMPORTED_MODULE_1__["default"])() : "";
+                }
               } // if dataCoord exist
 
 

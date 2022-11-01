@@ -31,6 +31,16 @@ Route::get('/batu_gamping', function () {
     return view('user.batu_gamping.index');
 })->name('user.batu_gamping.index');
 
+// route kalkarenit
+Route::get('/kalkarenit', function () {
+    return view('user.kalkarenit.index');
+})->name('user.kalkarenit.index');
+
+// route kalsulutit
+Route::get('/kalsulutit', function () {
+    return view('user.kalsulutit.index');
+})->name('user.kalsulutit.index');
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');

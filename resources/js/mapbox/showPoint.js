@@ -79,13 +79,17 @@ const showPoint = async () => {
                 `
             )
             .addTo(map);
-        document.getElementById("hapus").addEventListener(
-            "click",
-            async () => {
-                const id = e.features[0].properties.id;
-                sweetAlert(id);
-            } // end of click
-        ); // end of addEventListener
+        const hapusPoint = document.getElementById("hapus");
+        if (hapusPoint) {
+            hapusPoint.addEventListener(
+                "click",
+                async () => {
+                    const id = e.features[0].properties.id;
+                    sweetAlert(id);
+                } // end of click
+            );
+        }
+        // end of addEventListener
     });
 };
 

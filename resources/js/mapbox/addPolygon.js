@@ -99,23 +99,26 @@ const draftCoord = (listCoord) => {
     document.getElementById("jenis").value = "polygon";
 };
 // Show the coordinates of the polygon on the map
+const role = document.getElementById("role").textContent;
+
 const loadData = async () => {
     const data = await tools.getCoordinates();
     // filter data not null koordinat
     const dataCoord = data.filter((item) => item.koordinat !== null);
-
     map.on("load", () => {
         let coordinates = [];
         const features = [];
         // point coordinates
         const nmBatu = document.getElementById("nm_batu");
-        if (
-            (nmBatu && nmBatu.value === "batugamping") ||
-            nmBatu.value === "kalkarenit" ||
-            nmBatu.value === "kalsulutit"
-        ) {
-            addPoint();
-            showPoint();
+        if (nmBatu) {
+            if (
+                (nmBatu && nmBatu.value === "batugamping") ||
+                nmBatu.value === "kalkarenit" ||
+                nmBatu.value === "kalsulutit"
+            ) {
+                showPoint();
+                role === "admin" ? addPoint() : "";
+            }
         }
 
         // if dataCoord exist

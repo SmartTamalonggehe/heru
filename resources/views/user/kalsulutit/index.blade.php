@@ -31,7 +31,7 @@
 
 @section('content')
     <div id="route" style="display: none">batu_gamping</div>
-    <div id="batu" style="display: none">?nm_batu=batugamping</div>
+    <div id="batu" style="display: none">?nm_batu=kalsulutit</div>
     <input type="hidden" name="nm_batu" id="nm_batu" value="batugamping">
     <div class="mt-5">
         <section role="main" class="content-body">

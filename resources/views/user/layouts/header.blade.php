@@ -25,10 +25,29 @@
                                 Kala
                             </a>
                         </li>
-                        <li class="">
-                            <a class="nav-link" href="{{ route('user.batu_gamping.index') }}">
-                                Batugamping
+
+                        <li class="btn-group dropend">
+                            <a type="button" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                                Sebaran
                             </a>
+                            <ul class="dropdown-menu">
+                                <li class="">
+                                    <a class="nav-link" href="{{ route('user.batu_gamping.index') }}">
+                                        Batugamping
+                                    </a>
+                                </li>
+                                <li class="">
+                                    <a class="nav-link" href="{{ route('user.kalkarenit.index') }}">
+                                        Batu gamping kalkarenit
+                                    </a>
+                                </li>
+                                <li class="">
+                                    <a class="nav-link" href="{{ route('user.kalsulutit.index') }}">
+                                        Batu gamping kalsulutit
+                                    </a>
+                                </li>
+                            </ul>
                         </li>
                     </ul>
                 </nav>
