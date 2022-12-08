@@ -23,6 +23,7 @@ const showPoint = async () => {
                 properties: {
                     id: item.id,
                     ket: item.ket,
+                    gambar: item.gambar,
                     warna: item.warna,
                 },
             };
@@ -56,6 +57,7 @@ const showPoint = async () => {
     map.on("mouseenter", "point", function (e) {
         const coordinates = e.features[0].geometry.coordinates.slice();
         const ket = e.features[0].properties.ket;
+        const gambar = e.features[0].properties.gambar;
         popup
             .setLngLat(coordinates)
             .setHTML(
@@ -64,6 +66,9 @@ const showPoint = async () => {
                                 <tr>
                                     <td>Keterangan</td>
                                     <td>: ${ket}</td>
+                                </tr>
+                                <tr>
+                                    <td><a href="/${gambar}" target="blank"><img src="/${gambar}" class="img-thumbnail" alt="..."></a></td>
                                 </tr>
                                 ${
                                     role === "admin"

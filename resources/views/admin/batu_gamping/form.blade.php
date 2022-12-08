@@ -5,7 +5,7 @@
                 <header class="card-header">
                     <h2 class="card-title" id="judul_form"></h2>
                 </header>
-                <form id="formKu">
+                <form id="formGambar">
                     @csrf
                     <input type="hidden" name="id" class="inputReset" id="id">
                     <input type="hidden" name="nm_batu" id="nm_batu" value="batugamping">
@@ -23,12 +23,17 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-12 col-lg-8">
+                            <div class="col-12  col-lg-8">
                                 <div class="mb-3">
-                                    <label for="meter" class="form-label">Meter</label>
-                                    <input type="text" class="form-control" name="meter" id="meter" required>
-                                    <div class="invalid-feedback">
-                                        Data Tidak Boleh Kosong
+                                    <label for="gambar" class="form-label">Gambar</label>
+                                    <input type="file" accept="image/*" id="foto" name="gambar">
+                                    <div class="row">
+                                        <div class="col-6 mt-2">
+                                            <div class="image-preview"></div>
+                                        </div>
+                                        <div class="col-4 ml-4" id="container_foto_lama">
+                                            <div class="foto_lama"></div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -39,6 +44,17 @@
                                         <input id="warna" name="warna" class="form-control" type="text"
                                             value="rgb(0, 206, 255)" />
                                     </div>
+                                    <div class="invalid-feedback">
+                                        Data Tidak Boleh Kosong
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="col-12 col-lg-8">
+                                <div class="mb-3">
+                                    <label for="meter" class="form-label">Meter</label>
+                                    <input type="text" class="form-control" name="meter" id="meter" required>
                                     <div class="invalid-feedback">
                                         Data Tidak Boleh Kosong
                                     </div>

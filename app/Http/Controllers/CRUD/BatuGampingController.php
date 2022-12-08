@@ -7,6 +7,8 @@ use App\Models\Batugamping;
 use App\Models\KoordinatDet;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
 use Yajra\DataTables\Facades\DataTables;
 use Illuminate\Support\Facades\Validator;
 
@@ -77,6 +79,18 @@ class BatuGampingController extends Controller
             return $validate;
         }
 
+        if ($request->hasFile('gambar')) {
+            $image = $data['gambar'];
+            // set name image and get extension
+            $imageName = time() . '.' . $image->getClientOriginalExtension();
+            // destination path
+            $destinationPath = Storage::putFileAs('gambar', $image, $imageName);
+
+            $data['gambar'] = "storage/$destinationPath";
+        } else {
+            $data['gambar'] = "storage/default.png";
+        }
+
         $koordinat = Koordinat::create([
             'nm_koordinat' => $data['nm_batu'],
             'jenis' => $data['jenis'],
@@ -87,6 +101,7 @@ class BatuGampingController extends Controller
             'ket' => $request->ket,
             'warna' => $request->warna,
             'meter' => $request->meter,
+            'gambar' => $data['gambar'],
         ]);
         // store koordinat det
         $longitude = $request->longitude;
@@ -147,7 +162,15 @@ class BatuGampingController extends Controller
      */
     public function destroy($id)
     {
-        Batugamping::destroy($id);
+        $data = Batugamping::findOrFail($id);
+        // delete file image
+        $img = $data->gambar;
+        // remove file image
+        if ($img !== 'storage/default.png') {
+            File::delete($img);
+        }
+        // delete data
+        $data->delete();
         $pesan = [
             'judul' => 'Berhasil',
             'pesan' => 'Data Telah Dihapus',

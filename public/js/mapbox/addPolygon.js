@@ -104,6 +104,7 @@ var showPoint = /*#__PURE__*/function () {
                 properties: {
                   id: item.id,
                   ket: item.ket,
+                  gambar: item.gambar,
                   warna: item.warna
                 }
               };
@@ -134,7 +135,8 @@ var showPoint = /*#__PURE__*/function () {
             _tools__WEBPACK_IMPORTED_MODULE_1__.map.on("mouseenter", "point", function (e) {
               var coordinates = e.features[0].geometry.coordinates.slice();
               var ket = e.features[0].properties.ket;
-              popup.setLngLat(coordinates).setHTML("<table class=\"table mt-3 table-popup\">\n                            <tbody>\n                                <tr>\n                                    <td>Keterangan</td>\n                                    <td>: ".concat(ket, "</td>\n                                </tr>\n                                ").concat(role === "admin" ? " <tr>\n                                                <td colspan=\"2\">\n                                                    <button class=\"btn btn-danger btn-sm\" id=\"hapus\">Hapus</button>\n                                                </td>\n                                            </tr> " : "", "\n                            </tbody>\n                        </table>\n                ")).addTo(_tools__WEBPACK_IMPORTED_MODULE_1__.map);
+              var gambar = e.features[0].properties.gambar;
+              popup.setLngLat(coordinates).setHTML("<table class=\"table mt-3 table-popup\">\n                            <tbody>\n                                <tr>\n                                    <td>Keterangan</td>\n                                    <td>: ".concat(ket, "</td>\n                                </tr>\n                                <tr>\n                                    <td><a href=\"/").concat(gambar, "\" target=\"blank\"><img src=\"/").concat(gambar, "\" class=\"img-thumbnail\" alt=\"...\"></a></td>\n                                </tr>\n                                ").concat(role === "admin" ? " <tr>\n                                                <td colspan=\"2\">\n                                                    <button class=\"btn btn-danger btn-sm\" id=\"hapus\">Hapus</button>\n                                                </td>\n                                            </tr> " : "", "\n                            </tbody>\n                        </table>\n                ")).addTo(_tools__WEBPACK_IMPORTED_MODULE_1__.map);
               var hapusPoint = document.getElementById("hapus");
 
               if (hapusPoint) {

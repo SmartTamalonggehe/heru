@@ -85,6 +85,9 @@ $("body").on("click", ".btnHapus", function (e) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
 /* harmony import */ var _costumeForm__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./costumeForm */ "./resources/js/my_crud/costumeForm.js");
 var tools = __webpack_require__(/*! ./tools */ "./resources/js/my_crud/tools.js");
 
@@ -110,11 +113,6 @@ toastr.options = {
 function tampilForm() {
   document.getElementById("judul_form").innerText = "From Tambah Data";
   document.getElementById("tombolForm").innerText = "Simpan Data";
-
-  if (tools.route === "nilai") {
-    document.querySelector(".gambar_lama").innerHTML = "";
-  }
-
   $(".tampilModal").modal("show");
 }
 
@@ -126,11 +124,13 @@ if (btnTambah) {
       _costumeForm__WEBPACK_IMPORTED_MODULE_0__.formPolygon();
     }
 
+    console.log(tools.route);
     tampilForm();
     tools.save_method = "add";
     $("#id").val("");
     $(".inputReset").val("");
     $(".selectReset").val("").trigger("change");
+    removeImages();
   });
 }
 
@@ -185,6 +185,7 @@ function formGambar() {
     e.preventDefault();
     var id = $("#id").val();
     var dataKu = new FormData(this);
+    var url;
 
     if (tools.save_method == "add") {
       url = "".concat(tools.uri);
@@ -204,19 +205,16 @@ function formGambar() {
       success: function success(response) {
         toastr[response.type](response.pesan, response.judul);
 
-        if (response.type === "error") {
-          return 0;
-        }
+        if (response.type !== "error") {
+          $("#id").val("");
+          $(".inputReset").val("");
+          var oTable = $("#my_table").dataTable();
+          oTable.fnDraw(false);
+          $(".selectReset").val("").trigger("change"); // setTimeOut for reloading page
 
-        $("#formKu").trigger("reset");
-        $(".selectReset").val("").trigger("change");
-        resetPicture();
-        var oTable = $("#my_table").dataTable();
-        oTable.fnDraw(false);
-
-        if (tools.save_method == "Ubah") {
-          $(".tampilModal").modal("hide");
-          tools.save_method = "add";
+          setTimeout(function () {
+            location.reload();
+          }, 1000);
         }
       }
     }).fail(function (jqXHR, ajaxOptions, thrownError) {
@@ -225,17 +223,44 @@ function formGambar() {
   });
 }
 
-var resetPicture = function resetPicture() {
-  $(".custom-file-container__image-preview").attr("style", "color: aqua");
-  $(".custom-file-container__custom-file__custom-file-control").html("Choose file...\n        <span class=\"custom-file-container__custom-file__custom-file-control__button\"> Browse </span>");
+var removeImages = function removeImages() {
+  var foto = document.getElementById("foto");
+  var fotoPreview = document.querySelector(".fotoPreview");
+
+  if (fotoPreview) {
+    fotoPreview.style.transition = "all 0.3s ease-in-out";
+    fotoPreview.style.opacity = "0"; // remove image
+
+    setTimeout(function () {
+      fotoPreview.style.backgroundImage = "";
+      fotoPreview.style.display = "none";
+      foto.value = ""; // delete fotoPreview
+
+      fotoPreview.remove();
+    }, 100);
+  }
+
+  var buttonDelete = document.querySelector(".remove-image");
+
+  if (buttonDelete) {
+    buttonDelete.remove();
+  }
+
+  var foto_lama = document.querySelector(".foto_lama");
+
+  if (foto_lama) {
+    foto_lama.remove();
+  }
 }; // Script Tambah & Ubah
 
 
-if (tools.route === "nilai" || tools.route === "kartumhs") {
+if (tools.route === "batu_gamping") {
   formGambar();
 } else {
   formBiasa();
 }
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (removeImages);
 
 /***/ }),
 

@@ -22,10 +22,6 @@ toastr.options = {
 function tampilForm() {
     document.getElementById("judul_form").innerText = "From Tambah Data";
     document.getElementById("tombolForm").innerText = "Simpan Data";
-    if (tools.route === "nilai") {
-        document.querySelector(".gambar_lama").innerHTML = "";
-    }
-
     $(".tampilModal").modal("show");
 }
 
@@ -35,11 +31,13 @@ if (btnTambah) {
         if (tools.route === "koordinat" || tools.route === "geomorfologi") {
             costumeForm.formPolygon();
         }
+        console.log(tools.route);
         tampilForm();
         tools.save_method = "add";
         $("#id").val("");
         $(".inputReset").val("");
         $(".selectReset").val("").trigger("change");
+        removeImages();
     });
 }
 
@@ -90,6 +88,7 @@ function formGambar() {
         e.preventDefault();
         let id = $("#id").val();
         let dataKu = new FormData(this);
+        let url;
         if (tools.save_method == "add") {
             url = `${tools.uri}`;
         } else {
@@ -106,17 +105,16 @@ function formGambar() {
             processData: false,
             success: function (response) {
                 toastr[response.type](response.pesan, response.judul);
-                if (response.type === "error") {
-                    return 0;
-                }
-                $("#formKu").trigger("reset");
-                $(".selectReset").val("").trigger("change");
-                resetPicture();
-                let oTable = $("#my_table").dataTable();
-                oTable.fnDraw(false);
-                if (tools.save_method == "Ubah") {
-                    $(".tampilModal").modal("hide");
-                    tools.save_method = "add";
+                if (response.type !== "error") {
+                    $("#id").val("");
+                    $(".inputReset").val("");
+                    let oTable = $("#my_table").dataTable();
+                    oTable.fnDraw(false);
+                    $(".selectReset").val("").trigger("change");
+                    // setTimeOut for reloading page
+                    setTimeout(function () {
+                        location.reload();
+                    }, 1000);
                 }
             },
         }).fail(function (jqXHR, ajaxOptions, thrownError) {
@@ -125,17 +123,36 @@ function formGambar() {
     });
 }
 
-const resetPicture = () => {
-    $(".custom-file-container__image-preview").attr("style", "color: aqua");
-    $(".custom-file-container__custom-file__custom-file-control").html(
-        `Choose file...
-        <span class="custom-file-container__custom-file__custom-file-control__button"> Browse </span>`
-    );
-};
+const removeImages = () => {
+    const foto = document.getElementById("foto");
+    const fotoPreview = document.querySelector(".fotoPreview");
+    if (fotoPreview) {
+        fotoPreview.style.transition = "all 0.3s ease-in-out";
+        fotoPreview.style.opacity = "0";
+        // remove image
+        setTimeout(() => {
+            fotoPreview.style.backgroundImage = "";
+            fotoPreview.style.display = "none";
+            foto.value = "";
+            // delete fotoPreview
+            fotoPreview.remove();
+        }, 100);
+    }
+    const buttonDelete = document.querySelector(".remove-image");
+    if (buttonDelete) {
+        buttonDelete.remove();
+    }
 
+    const foto_lama = document.querySelector(".foto_lama");
+    if (foto_lama) {
+        foto_lama.remove();
+    }
+};
 // Script Tambah & Ubah
-if (tools.route === "nilai" || tools.route === "kartumhs") {
+if (tools.route === "batu_gamping") {
     formGambar();
 } else {
     formBiasa();
 }
+
+export default removeImages;

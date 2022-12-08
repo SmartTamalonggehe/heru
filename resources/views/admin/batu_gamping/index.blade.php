@@ -2,7 +2,7 @@
 @section('judul', 'Halaman Batu Gamping')
 
 @php
-$folder = 'batu_gamping';
+    $folder = 'batu_gamping';
 @endphp
 
 @section("$folder", 'my-nav-active')
