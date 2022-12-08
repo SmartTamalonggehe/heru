@@ -68,7 +68,7 @@ const showPoint = async () => {
                                     <td>: ${ket}</td>
                                 </tr>
                                 <tr>
-                                    <td><a href="/${gambar}" target="blank"><img src="/${gambar}" class="img-thumbnail" alt="..."></a></td>
+                                    <td colspan="2"><a href="/${gambar}" target="blank"><img src="/${gambar}" class="img-thumbnail" alt="..."></a></td>
                                 </tr>
                                 ${
                                     role === "admin"

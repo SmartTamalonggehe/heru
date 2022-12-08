@@ -106,6 +106,7 @@ function formGambar() {
             success: function (response) {
                 toastr[response.type](response.pesan, response.judul);
                 if (response.type !== "error") {
+                    removeImages();
                     $("#id").val("");
                     $(".inputReset").val("");
                     let oTable = $("#my_table").dataTable();
