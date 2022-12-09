@@ -1,5 +1,6 @@
 import { getCoordinates, map, sweetAlert } from "./tools";
 const role = document.getElementById("role").textContent;
+const { batu } = require("../my_crud/tools");
 
 const showPoint = async () => {
     const data = await getCoordinates();
@@ -67,9 +68,13 @@ const showPoint = async () => {
                                     <td>Keterangan</td>
                                     <td>: ${ket}</td>
                                 </tr>
-                                <tr>
-                                    <td colspan="2"><a href="/${gambar}" target="blank"><img src="/${gambar}" class="img-thumbnail" alt="..."></a></td>
-                                </tr>
+                               ${
+                                   batu === "batugamping"
+                                       ? ` <tr>
+                                                <td colspan="2"><a href="/${gambar}" target="blank"><img src="/${gambar}" class="img-thumbnail" alt="..."></a></td>
+                                            </tr>`
+                                       : ""
+                               }
                                 ${
                                     role === "admin"
                                         ? ` <tr>

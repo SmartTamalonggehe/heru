@@ -31,7 +31,7 @@ if (btnTambah) {
         if (tools.route === "koordinat" || tools.route === "geomorfologi") {
             costumeForm.formPolygon();
         }
-        console.log(tools.route);
+        console.log("route", tools.batu);
         tampilForm();
         tools.save_method = "add";
         $("#id").val("");
@@ -150,7 +150,7 @@ const removeImages = () => {
     }
 };
 // Script Tambah & Ubah
-if (tools.route === "batu_gamping") {
+if (tools.batu === "batugamping") {
     formGambar();
 } else {
     formBiasa();

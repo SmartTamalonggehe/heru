@@ -124,7 +124,7 @@ if (btnTambah) {
       _costumeForm__WEBPACK_IMPORTED_MODULE_0__.formPolygon();
     }
 
-    console.log(tools.route);
+    console.log("route", tools.batu);
     tampilForm();
     tools.save_method = "add";
     $("#id").val("");
@@ -255,7 +255,7 @@ var removeImages = function removeImages() {
 }; // Script Tambah & Ubah
 
 
-if (tools.route === "batu_gamping") {
+if (tools.batu === "batugamping") {
   formGambar();
 } else {
   formBiasa();
@@ -273,12 +273,14 @@ if (tools.route === "batu_gamping") {
 
 // Variable
 var route = document.getElementById("route").textContent;
+var batu = document.getElementById("batu").textContent.split("=")[1];
 var save_method;
 var uri = "/crud/".concat(route);
 module.exports = {
   route: route,
   save_method: save_method,
-  uri: uri
+  uri: uri,
+  batu: batu
 };
 
 /***/ }),

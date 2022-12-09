@@ -14,7 +14,7 @@
                         <div class="row">
                             <div class="col-12">
                                 <div class="mb-3">
-                                    <label for="ket" class="form-label">Ket</label>
+                                    <label for="ket" class="form-label">Ket Kalkarenit</label>
                                     <input type="text" class="form-control inputReset" name="ket" id="ket"
                                         required>
                                     <div class="invalid-feedback">

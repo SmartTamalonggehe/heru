@@ -27,7 +27,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var addPoint = function addPoint() {
-  console.log("addPoint");
   var marker = new mapboxgl.Marker({
     draggable: true,
     color: "red"
@@ -76,6 +75,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 
 var role = document.getElementById("role").textContent;
+
+var _require = __webpack_require__(/*! ../my_crud/tools */ "./resources/js/my_crud/tools.js"),
+    batu = _require.batu;
 
 var showPoint = /*#__PURE__*/function () {
   var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2() {
@@ -136,7 +138,7 @@ var showPoint = /*#__PURE__*/function () {
               var coordinates = e.features[0].geometry.coordinates.slice();
               var ket = e.features[0].properties.ket;
               var gambar = e.features[0].properties.gambar;
-              popup.setLngLat(coordinates).setHTML("<table class=\"table mt-3 table-popup\">\n                            <tbody>\n                                <tr>\n                                    <td>Keterangan</td>\n                                    <td>: ".concat(ket, "</td>\n                                </tr>\n                                <tr>\n                                    <td colspan=\"2\"><a href=\"/").concat(gambar, "\" target=\"blank\"><img src=\"/").concat(gambar, "\" class=\"img-thumbnail\" alt=\"...\"></a></td>\n                                </tr>\n                                ").concat(role === "admin" ? " <tr>\n                                                <td colspan=\"2\">\n                                                    <button class=\"btn btn-danger btn-sm\" id=\"hapus\">Hapus</button>\n                                                </td>\n                                            </tr> " : "", "\n                            </tbody>\n                        </table>\n                ")).addTo(_tools__WEBPACK_IMPORTED_MODULE_1__.map);
+              popup.setLngLat(coordinates).setHTML("<table class=\"table mt-3 table-popup\">\n                            <tbody>\n                                <tr>\n                                    <td>Keterangan</td>\n                                    <td>: ".concat(ket, "</td>\n                                </tr>\n                               ").concat(batu === "batugamping" ? " <tr>\n                                                <td colspan=\"2\"><a href=\"/".concat(gambar, "\" target=\"blank\"><img src=\"/").concat(gambar, "\" class=\"img-thumbnail\" alt=\"...\"></a></td>\n                                            </tr>") : "", "\n                                ").concat(role === "admin" ? " <tr>\n                                                <td colspan=\"2\">\n                                                    <button class=\"btn btn-danger btn-sm\" id=\"hapus\">Hapus</button>\n                                                </td>\n                                            </tr> " : "", "\n                            </tbody>\n                        </table>\n                ")).addTo(_tools__WEBPACK_IMPORTED_MODULE_1__.map);
               var hapusPoint = document.getElementById("hapus");
 
               if (hapusPoint) {
@@ -262,6 +264,26 @@ var sweetAlert = function sweetAlert(href) {
 };
 
 
+
+/***/ }),
+
+/***/ "./resources/js/my_crud/tools.js":
+/*!***************************************!*\
+  !*** ./resources/js/my_crud/tools.js ***!
+  \***************************************/
+/***/ ((module) => {
+
+// Variable
+var route = document.getElementById("route").textContent;
+var batu = document.getElementById("batu").textContent.split("=")[1];
+var save_method;
+var uri = "/crud/".concat(route);
+module.exports = {
+  route: route,
+  save_method: save_method,
+  uri: uri,
+  batu: batu
+};
 
 /***/ }),
 

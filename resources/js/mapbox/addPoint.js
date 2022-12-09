@@ -1,7 +1,6 @@
 import { map } from "./tools";
 
 const addPoint = () => {
-    console.log("addPoint");
     const marker = new mapboxgl.Marker({
         draggable: true,
         color: "red",
