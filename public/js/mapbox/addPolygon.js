@@ -79,6 +79,8 @@ var role = document.getElementById("role").textContent;
 var _require = __webpack_require__(/*! ../my_crud/tools */ "./resources/js/my_crud/tools.js"),
     batu = _require.batu;
 
+console.log(batu);
+
 var showPoint = /*#__PURE__*/function () {
   var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2() {
     var data, point, featurePoint, popup;
@@ -275,7 +277,14 @@ var sweetAlert = function sweetAlert(href) {
 
 // Variable
 var route = document.getElementById("route").textContent;
-var batu = document.getElementById("batu").textContent.split("=")[1];
+var init = document.getElementById("batu");
+var batu;
+
+if (init) {
+  batu = init.textContent.split("=")[1];
+}
+
+console.log(batu);
 var save_method;
 var uri = "/crud/".concat(route);
 module.exports = {

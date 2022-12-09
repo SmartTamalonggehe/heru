@@ -273,7 +273,14 @@ if (tools.batu === "batugamping") {
 
 // Variable
 var route = document.getElementById("route").textContent;
-var batu = document.getElementById("batu").textContent.split("=")[1];
+var init = document.getElementById("batu");
+var batu;
+
+if (init) {
+  batu = init.textContent.split("=")[1];
+}
+
+console.log(batu);
 var save_method;
 var uri = "/crud/".concat(route);
 module.exports = {

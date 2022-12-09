@@ -2,6 +2,8 @@ import { getCoordinates, map, sweetAlert } from "./tools";
 const role = document.getElementById("role").textContent;
 const { batu } = require("../my_crud/tools");
 
+console.log(batu);
+
 const showPoint = async () => {
     const data = await getCoordinates();
     console.log(data);

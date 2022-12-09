@@ -1,6 +1,11 @@
 // Variable
 const route = document.getElementById("route").textContent;
-const batu = document.getElementById("batu").textContent.split("=")[1];
+const init = document.getElementById("batu");
+let batu;
+if (init) {
+    batu = init.textContent.split("=")[1];
+}
+console.log(batu);
 let save_method;
 
 let uri = `/crud/${route}`;
