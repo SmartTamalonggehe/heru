@@ -199,7 +199,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "token": () => (/* binding */ token),
 /* harmony export */   "uri": () => (/* binding */ uri)
 /* harmony export */ });
-var token = "pk.eyJ1Ijoic21hcnRzcGFydGFjdXMiLCJhIjoiY2wwMWdiYTNzMGN3eTNkb2Z4Yjg3ODk4YSJ9.n7B5ZH-YXB_k-UKzGGoVfA"; // [-100.04, 38.907]
+var token = "pk.eyJ1Ijoic21hcnRzcGFydGFjdXMiLCJhIjoiY2wwMWdheHRtMHRkOTNjcXB5dHRrMGZtbiJ9.CrQ7upOpgEtfqU7IK42sPA"; // [-100.04, 38.907]
 // [140.79245772703842, -2.617302697836186]
 
 mapboxgl.accessToken = token;
