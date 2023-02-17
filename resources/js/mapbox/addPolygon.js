@@ -57,6 +57,11 @@ function updateArea(e) {
             ".modal .toggle .label-toggle"
         );
         textToggle.innerHTML = `Jumlah Koordinat ${coord.length}`;
+        // input luas
+        const luas = document.getElementById("luas");
+        if (luas) {
+            luas.value = rounded_area;
+        }
         draftCoord(coord);
         draw.deleteAll();
     } else {
@@ -145,6 +150,7 @@ const loadData = async () => {
                         eksogen: coord.eksogen,
                         lereng: coord.lereng,
                         kontur: coord.kontur,
+                        luas: coord.luas,
                     },
                     geometry: {
                         type: "Polygon",
@@ -211,6 +217,10 @@ const loadData = async () => {
                                     <td>Aliran</td>
                                     <td>: ${e.features[0].properties.aliran}</td>
                                 </tr>
+                                <tr>
+                                    <td>Luas</td>
+                                    <td>: ${e.features[0].properties.luas}</td>
+                                </tr>
                             </tbody>
                         </table>`;
             }
@@ -228,6 +238,10 @@ const loadData = async () => {
                                 <tr>
                                     <td>Satuan</td>
                                     <td>: ${e.features[0].properties.satuan}</td>
+                                </tr>
+                                <tr>
+                                    <td>Luas</td>
+                                    <td>: ${e.features[0].properties.luas}</td>
                                 </tr>
                                 <tr>
                                     <td>Regional</td>

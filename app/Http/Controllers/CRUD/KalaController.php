@@ -94,6 +94,7 @@ class KalaController extends Controller
             'regional' => $request->regional,
             'ket' => $request->ket,
             'warna' => $request->warna,
+            'luas' => $request->luas,
         ]);
         // store koordinat det
         $longitude = $request->longitude;

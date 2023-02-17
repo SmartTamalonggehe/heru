@@ -60,6 +60,14 @@
                                     </div>
                                 </div>
                             </div>
+
+                            <div class="col-12">
+                                <div class="mb-3">
+                                    <label for="link" class="form-label">Link</label>
+                                    <input type="text" class="form-control" name="link" id="link">
+                                </div>
+                            </div>
+
                             <div class="col-12">
                                 <div class="toggle toggle-primary" data-plugin-toggle>
                                     <section class="toggle"> {{-- active --}}

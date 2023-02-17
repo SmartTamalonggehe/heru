@@ -101,6 +101,7 @@ class BatuGampingController extends Controller
             'ket' => $request->ket,
             'warna' => $request->warna,
             'meter' => $request->meter,
+            'link' => $request->link,
             'gambar' => $data['gambar'],
         ]);
         // store koordinat det

@@ -33,6 +33,7 @@ const showMap = async () => {
                         eksogen: coord.eksogen,
                         lereng: coord.lereng,
                         kontur: coord.kontur,
+                        luas: coord.luas,
                     },
                     geometry: {
                         type: "Polygon",
@@ -99,6 +100,10 @@ const showMap = async () => {
                                     <td>Aliran</td>
                                     <td>: ${e.features[0].properties.aliran}</td>
                                 </tr>
+                                <tr>
+                                    <td>Luas</td>
+                                    <td>: ${e.features[0].properties.luas}</td>
+                                </tr>
                             </tbody>
                         </table>`;
             }
@@ -120,6 +125,10 @@ const showMap = async () => {
                                 <tr>
                                     <td>Regional</td>
                                     <td>: ${e.features[0].properties.regional}</td>
+                                </tr>
+                                <tr>
+                                    <td>Luas</td>
+                                    <td>: ${e.features[0].properties.luas}</td>
                                 </tr>
                             </tbody>
                         </table>`;

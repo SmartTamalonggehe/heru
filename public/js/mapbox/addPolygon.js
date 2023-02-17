@@ -108,6 +108,7 @@ var showPoint = /*#__PURE__*/function () {
                 properties: {
                   id: item.id,
                   ket: item.ket,
+                  link: item.link,
                   gambar: item.gambar,
                   warna: item.warna
                 }
@@ -139,8 +140,9 @@ var showPoint = /*#__PURE__*/function () {
             _tools__WEBPACK_IMPORTED_MODULE_1__.map.on("mouseenter", "point", function (e) {
               var coordinates = e.features[0].geometry.coordinates.slice();
               var ket = e.features[0].properties.ket;
+              var link = e.features[0].properties.link;
               var gambar = e.features[0].properties.gambar;
-              popup.setLngLat(coordinates).setHTML("<table class=\"table mt-3 table-popup\">\n                            <tbody>\n                                <tr>\n                                    <td>Keterangan</td>\n                                    <td>: ".concat(ket, "</td>\n                                </tr>\n                               ").concat(batu === "batugamping" ? " <tr>\n                                                <td colspan=\"2\"><a href=\"/".concat(gambar, "\" target=\"blank\"><img src=\"/").concat(gambar, "\" class=\"img-thumbnail\" alt=\"...\"></a></td>\n                                            </tr>") : "", "\n                                ").concat(role === "admin" ? " <tr>\n                                                <td colspan=\"2\">\n                                                    <button class=\"btn btn-danger btn-sm\" id=\"hapus\">Hapus</button>\n                                                </td>\n                                            </tr> " : "", "\n                            </tbody>\n                        </table>\n                ")).addTo(_tools__WEBPACK_IMPORTED_MODULE_1__.map);
+              popup.setLngLat(coordinates).setHTML("<table class=\"table mt-3 table-popup\">\n                            <tbody>\n                                <tr>\n                                    <td>Keterangan</td>\n                                    <td>: ".concat(ket, "</td>\n                                </tr>\n                               ").concat(batu === "batugamping" ? " <tr>\n                                                <td colspan=\"2\"><a href=\"/".concat(gambar, "\" target=\"blank\"><img src=\"/").concat(gambar, "\" class=\"img-thumbnail\" alt=\"...\"></a></td>\n                                            </tr>") : "", "\n                                ").concat(role === "admin" ? " <tr>\n                                                <td colspan=\"2\">\n                                                    <button class=\"btn btn-danger btn-sm\" id=\"hapus\">Hapus</button>\n                                                </td>\n                                            </tr> " : "", "\n                                ").concat(link ? " <tr>\n                                                <td colspan=\"2\">\n                                                    <div class=\"text-center\"><a href=\"".concat(link, "\" target=\"_blank\" title=\"").concat(link, "\"\n                                                    rel=\"noopener noreferrer\">Link</a></div>\n                                                </td>\n                                            </tr>") : "", "\n                            </tbody>\n                        </table>\n                ")).addTo(_tools__WEBPACK_IMPORTED_MODULE_1__.map);
               var hapusPoint = document.getElementById("hapus");
 
               if (hapusPoint) {
@@ -1200,7 +1202,14 @@ function updateArea(e) {
 
     document.getElementById("tambah").click();
     var textToggle = document.querySelector(".modal .toggle .label-toggle");
-    textToggle.innerHTML = "Jumlah Koordinat ".concat(coord.length);
+    textToggle.innerHTML = "Jumlah Koordinat ".concat(coord.length); // input luas
+
+    var luas = document.getElementById("luas");
+
+    if (luas) {
+      luas.value = rounded_area;
+    }
+
     draftCoord(coord);
     draw.deleteAll();
   } else {
@@ -1279,7 +1288,8 @@ var loadData = /*#__PURE__*/function () {
                       endogen: coord.endogen,
                       eksogen: coord.eksogen,
                       lereng: coord.lereng,
-                      kontur: coord.kontur
+                      kontur: coord.kontur,
+                      luas: coord.luas
                     },
                     geometry: {
                       type: "Polygon",
@@ -1315,11 +1325,11 @@ var loadData = /*#__PURE__*/function () {
                 show = "<table class=\"table mt-3 table-popup\">\n                            <tbody>\n                                <tr>\n                                    <td>Keterangan</td>\n                                    <td>: ".concat(e.features[0].properties.ket, "</td>\n                                </tr>\n                                <tr>\n                                    <td>Luas</td>\n                                    <td>: ").concat(e.features[0].properties.meter, "</td>\n                                </tr>\n                            </tbody>\n                        </table>");
 
                 if (_tools__WEBPACK_IMPORTED_MODULE_3__.route == "geomorfologi") {
-                  show = "<table class=\"table mt-3 table-popup\">\n                            <tbody>\n                                <tr>\n                                    <td>Nama</td>\n                                    <td>: ".concat(e.features[0].properties.name, "</td>\n                                </tr>\n                                <tr>\n                                    <td>Relief</td>\n                                    <td>: ").concat(e.features[0].properties.relief, "</td>\n                                </tr>\n                                <tr>\n                                    <td>Lembah</td>\n                                    <td>: ").concat(e.features[0].properties.lembah, "</td>\n                                </tr>\n                                <tr>\n                                    <td>Aliran</td>\n                                    <td>: ").concat(e.features[0].properties.aliran, "</td>\n                                </tr>\n                            </tbody>\n                        </table>");
+                  show = "<table class=\"table mt-3 table-popup\">\n                            <tbody>\n                                <tr>\n                                    <td>Nama</td>\n                                    <td>: ".concat(e.features[0].properties.name, "</td>\n                                </tr>\n                                <tr>\n                                    <td>Relief</td>\n                                    <td>: ").concat(e.features[0].properties.relief, "</td>\n                                </tr>\n                                <tr>\n                                    <td>Lembah</td>\n                                    <td>: ").concat(e.features[0].properties.lembah, "</td>\n                                </tr>\n                                <tr>\n                                    <td>Aliran</td>\n                                    <td>: ").concat(e.features[0].properties.aliran, "</td>\n                                </tr>\n                                <tr>\n                                    <td>Luas</td>\n                                    <td>: ").concat(e.features[0].properties.luas, "</td>\n                                </tr>\n                            </tbody>\n                        </table>");
                 }
 
                 if (_tools__WEBPACK_IMPORTED_MODULE_3__.route == "kala") {
-                  show = "<table class=\"table mt-3 table-popup\">\n                            <tbody>\n                                <tr>\n                                    <td>Nama</td>\n                                    <td>: ".concat(e.features[0].properties.name, "</td>\n                                </tr>\n                                <tr>\n                                    <td>Umur</td>\n                                    <td>: ").concat(e.features[0].properties.umur, "</td>\n                                </tr>\n                                <tr>\n                                    <td>Satuan</td>\n                                    <td>: ").concat(e.features[0].properties.satuan, "</td>\n                                </tr>\n                                <tr>\n                                    <td>Regional</td>\n                                    <td>: ").concat(e.features[0].properties.regional, "</td>\n                                </tr>\n                            </tbody>\n                        </table>");
+                  show = "<table class=\"table mt-3 table-popup\">\n                            <tbody>\n                                <tr>\n                                    <td>Nama</td>\n                                    <td>: ".concat(e.features[0].properties.name, "</td>\n                                </tr>\n                                <tr>\n                                    <td>Umur</td>\n                                    <td>: ").concat(e.features[0].properties.umur, "</td>\n                                </tr>\n                                <tr>\n                                    <td>Satuan</td>\n                                    <td>: ").concat(e.features[0].properties.satuan, "</td>\n                                </tr>\n                                <tr>\n                                    <td>Luas</td>\n                                    <td>: ").concat(e.features[0].properties.luas, "</td>\n                                </tr>\n                                <tr>\n                                    <td>Regional</td>\n                                    <td>: ").concat(e.features[0].properties.regional, "</td>\n                                </tr>\n                            </tbody>\n                        </table>");
                 }
 
                 new mapboxgl.Popup().setLngLat(e.lngLat).setHTML(show).addTo(map);

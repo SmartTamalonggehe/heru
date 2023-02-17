@@ -101,6 +101,7 @@ class GeomorfologiController extends Controller
             'eksogen' => $request->eksogen,
             'lereng' => $request->lereng,
             'kontur' => $request->kontur,
+            'luas' => $request->luas,
         ]);
         // store koordinat det
         $longitude = $request->longitude;

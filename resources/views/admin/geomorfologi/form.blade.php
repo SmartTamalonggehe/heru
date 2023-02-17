@@ -91,13 +91,23 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-12 col-lg-3">
+                            <div class="col-12 col-lg-4">
                                 <div class="mb-3">
                                     <label for="warna" class="form-label">Warna</label>
                                     <div id="demo">
                                         <input id="warna" name="warna" class="form-control" type="text"
                                             value="rgb(0, 206, 255)" />
                                     </div>
+                                    <div class="invalid-feedback">
+                                        Data Tidak Boleh Kosong
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-lg-8">
+                                <div class="mb-3">
+                                    <label for="luas" class="form-label">Luas</label>
+                                    <input type="text" class="form-control inputReset" name="luas"
+                                        id="luas" required>
                                     <div class="invalid-feedback">
                                         Data Tidak Boleh Kosong
                                     </div>

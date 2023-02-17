@@ -26,6 +26,7 @@ const showPoint = async () => {
                 properties: {
                     id: item.id,
                     ket: item.ket,
+                    link: item.link,
                     gambar: item.gambar,
                     warna: item.warna,
                 },
@@ -60,6 +61,7 @@ const showPoint = async () => {
     map.on("mouseenter", "point", function (e) {
         const coordinates = e.features[0].geometry.coordinates.slice();
         const ket = e.features[0].properties.ket;
+        const link = e.features[0].properties.link;
         const gambar = e.features[0].properties.gambar;
         popup
             .setLngLat(coordinates)
@@ -84,6 +86,16 @@ const showPoint = async () => {
                                                     <button class="btn btn-danger btn-sm" id="hapus">Hapus</button>
                                                 </td>
                                             </tr> `
+                                        : ""
+                                }
+                                ${
+                                    link
+                                        ? ` <tr>
+                                                <td colspan="2">
+                                                    <div class="text-center"><a href="${link}" target="_blank" title="${link}"
+                                                    rel="noopener noreferrer">Link</a></div>
+                                                </td>
+                                            </tr>`
                                         : ""
                                 }
                             </tbody>
